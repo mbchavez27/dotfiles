@@ -4,3 +4,4 @@
 <img src="Screenshots/PowerShell_1.png" alt="powershell"/>
 <h3>NeoVim with Installed Plugins</h3>
 <img src="Screenshots/Neovim.png" alt="powershell"/>
+<h2>Config</h2>
