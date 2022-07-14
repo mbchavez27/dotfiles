@@ -5,3 +5,5 @@
 <h3>NeoVim with Installed Plugins</h3>
 <img src="Screenshots/Neovim.png" alt="powershell"/>
 <h2>Config</h2>
+<h3>Wallpaper:</h3>
+<p>Illustrations from: <a href="https://www.pixiv.net/en/users/24036634/illustrations?fbclid=IwAR0klCnyFwzGSs1tR_U6aAILfZYpOelWB1IugeVXBRhbrsn7jDFfy93hIjE">this artist</a></p>
