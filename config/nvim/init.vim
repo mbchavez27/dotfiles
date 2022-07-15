@@ -27,8 +27,15 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 "Notes and TodoList
 "Markdown
+"Zen Mode
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+"Writing Markdown
+Plug 'mzlogin/vim-markdown-toc'
+Plug 'dhruvasagar/vim-table-mode'
+"Display Markdown
+"Browser
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()
 
 "Set Configs
@@ -130,3 +137,4 @@ let g:limelight_eop = '\ze\n^\s'
 " Highlighting priority (default: 10)
 "   Set it to -1 not to overrule hlsearch
 let g:limelight_priority = -1
+
