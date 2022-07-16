@@ -40,6 +40,7 @@ call plug#end()
 
 "Set Configs
 set number
+set relativenumber
 set mouse=a
 set clipboard=unnamed
 
@@ -137,4 +138,3 @@ let g:limelight_eop = '\ze\n^\s'
 " Highlighting priority (default: 10)
 "   Set it to -1 not to overrule hlsearch
 let g:limelight_priority = -1
-
