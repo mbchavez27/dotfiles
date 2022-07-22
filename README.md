@@ -10,3 +10,4 @@
 <h3>Example Wallpapers</h3>
 <img src="Wallpapers/yae wallpaper.jpg"/>
 <img src="Wallpapers/yoimiyaomy.jpg"/>
+<h3>Plugins</h3>
