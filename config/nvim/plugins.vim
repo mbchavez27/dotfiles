@@ -31,6 +31,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'folke/trouble.nvim'
 "LSP and Auto Complete
 Plug 'neovim/nvim-lspconfig'
+Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -47,5 +48,5 @@ Plug 'iamcco/markdown-preview.nvim'
 Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
 "Git
 Plug 'kdheepak/lazygit.nvim'
-Plug 'tanvirtin/vgit.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 call plug#end()
