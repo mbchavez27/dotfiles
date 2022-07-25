@@ -66,3 +66,28 @@ nnoremap <leader>tb <cmd>TroubleToggle <CR>
 nnoremap <leader>tt <cmd>ToggleTerm direction=float<CR>
 "Git
 nnoremap <leader>lg <cmd>:LazyGit<CR>
+nnoremap <leader>hp <cmd>:Gitsigns preview_hunk<CR>
+nnoremap <silent><C-n> <cmd>:Gitsigns prev_hunk<CR>
+nnoremap <silent><C-p> <cmd>:Gitsigns next_hunk<CR>
+"LSP Saga
+nnoremap <silent>K :Lspsaga hover_doc<CR>
+nnoremap <silent>gs <Cmd>Lspsaga signature_help<CR>
+nnoremap <silent> gh <Cmd>Lspsaga lsp_finder<CR>
+nnoremap <leader> ca<Cmd>Lspsaga code_action<CR>
+vnoremap <leader> ca <Cmd><C-U>Lspsaga code_action<CR>
+nnoremap <silent> gd <Cmd>Lspsaga preview_definition<CR>
+nnoremap <silent> gr <Cmd>Lspsaga rename<CR>
+nnoremap <silent> cd <Cmd>Lspsaga show_line_diagnostics<CR>
+nnoremap <silent> [e<Cmd>Lspsaga diagnostic_jump_next<CR>
+nnoremap <silent> ]e<Cmd>Lspsaga diagnostic_jump_prev<CR>
+lua <<EOF
+local action = require("lspsaga.action")
+-- scroll down hover doc or scroll in definition preview
+vim.keymap.set("n", "<C-f>", function()
+    action.smart_scroll_with_saga(1)
+end, { silent = true })
+-- scroll up hover doc
+vim.keymap.set("n", "<C-b>", function()
+    action.smart_scroll_with_saga(-1)
+end, { silent = true })
+EOF
