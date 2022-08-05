@@ -8,8 +8,6 @@
 source C:\Users\mbchavez\AppData\Local\nvim\plugins.vim
 
 "VimScript Configs
-"Markdown
-let g:mkdp_auto_start = 1  
 "Choose color Scheme 
 colorscheme gruvbox
 
@@ -36,6 +34,10 @@ lua dofile('C:\\Users\\mbchavez\\AppData\\Local\\nvim\\configs.lua')
 "KeyBinds
 "Map Leader
 let mapleader = " "
+"Open a Notes and To-Do List 
+nnoremap <silent>mt <cmd>:vs F:\Max's Files\Productivity Files\Managament Files\OrgFiles_mbchavez\TASKS.md<CR> 
+nnoremap <silent>mn <cmd>:vs F:\Max's Files\Productivity Files\Managament Files\OrgFiles_mbchavez\NOTES.md<CR> 
+nnoremap <silent>mr <cmd>:vs F:\Max's Files\Productivity Files\Managament Files\OrgFiles_mbchavez\README.md<CR> 
 "NvimTree
 nnoremap <silent> <C-b> :NvimTreeToggle<CR> 
 "Use to Switch Panels
@@ -83,11 +85,14 @@ nnoremap <silent> ]e<Cmd>Lspsaga diagnostic_jump_prev<CR>
 lua <<EOF
 local action = require("lspsaga.action")
 -- scroll down hover doc or scroll in definition preview
-vim.keymap.set("n", "<C-f>", function()
+vim.keymap.set("n", "<C-n>", function()
     action.smart_scroll_with_saga(1)
 end, { silent = true })
 -- scroll up hover doc
-vim.keymap.set("n", "<C-b>", function()
+vim.keymap.set("n", "<C-p>", function()
     action.smart_scroll_with_saga(-1)
 end, { silent = true })
 EOF
+
+"Zen Mode 
+nnoremap <silent> zz <CMD>:ZenMode<CR>
