@@ -75,15 +75,10 @@ require('nvim-cursorline').setup {
   }
 }
 
-
 --TreeSitter
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
   indent = {
@@ -151,14 +146,14 @@ lspconfig.cssls.setup {
 }
 lspconfig.eslint.setup {
  autostart = true,
- on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
-    end,
- capabilities = capabilities,
- root_dir = function(fname)    
-        return vim.loop.cwd()
-    end,
+ -- on_attach = function(client)
+ --        client.resolved_capabilities.document_formatting = false
+ --        client.resolved_capabilities.document_range_formatting = false
+ --    end,
+ -- capabilities = capabilities,
+ -- root_dir = function(fname)   
+ --        return vim.loop.cwd()
+ --    end,
 }
 lspconfig.jsonls.setup {
  autostart = true,
@@ -261,6 +256,7 @@ sources = {
   {name = 'nvim_lsp'},
   {name = 'buffer'},
   {name = 'luasnip'},
+  {name = 'orgmode' },
 },
 
 window = {
@@ -400,3 +396,7 @@ require("toggleterm").setup{}
 
 --Git
 require('gitsigns').setup()
+
+--Zen mode
+require("zen-mode").setup {
+  }
