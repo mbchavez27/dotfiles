@@ -8,8 +8,6 @@ Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'nvim-lualine/lualine.nvim'
 "Color Scheme
 Plug 'ellisonleao/gruvbox.nvim'
-Plug 'tiagovla/tokyodark.nvim'
-Plug 'dikiaap/minimalist'
 "Colors
 Plug 'ziontee113/color-picker.nvim'
 "File Explorer 
@@ -44,9 +42,12 @@ Plug 'rafamadriz/friendly-snippets'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 "Markdown 
 Plug 'iamcco/markdown-preview.nvim'
+Plug 'mzlogin/vim-markdown-toc'
 "Terminal
 Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
 "Git
 Plug 'kdheepak/lazygit.nvim'
 Plug 'lewis6991/gitsigns.nvim'
+"ZenMode
+Plug 'folke/zen-mode.nvim'
 call plug#end()
