@@ -8,6 +8,7 @@ Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'nvim-lualine/lualine.nvim'
 "Color Scheme
 Plug 'ellisonleao/gruvbox.nvim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 "Colors
 Plug 'ziontee113/color-picker.nvim'
 "File Explorer 
@@ -50,4 +51,6 @@ Plug 'kdheepak/lazygit.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 "ZenMode
 Plug 'folke/zen-mode.nvim'
+"Ascii Image
+Plug 'samodostal/image.nvim'
 call plug#end()
