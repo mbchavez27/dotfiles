@@ -77,14 +77,26 @@ require('nvim-cursorline').setup {
 
 --TreeSitter
 require'nvim-treesitter.configs'.setup {
+  ensure_installed = {"javascript", "python"},
+
+  sync_install = false,
+
+  auto_install = true,
+
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
   },
   indent = {
     enable = false,
-  }
-
+  },
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    -- colors = {}, -- table of hex strings
+    -- termcolors = {} -- table of colour name strings
+  } 
 }
 
 --LSP Config
@@ -392,7 +404,32 @@ require("null-ls").setup({
 })
 
 --Terminal 
-require("toggleterm").setup{}
+local powershell_options = {
+  shell = vim.fn.executable "pwsh" and "pwsh" or "powershell",
+  shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+  shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+  shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
+  shellquote = "",
+  shellxquote = "",
+}
+
+for option, value in pairs(powershell_options) do
+  vim.opt[option] = value
+end
+require("toggleterm").setup{
+    size = function(terminal) if terminal.direction == "horizontal" then return 15
+            elseif terminal.direction == "vertical" then return vim.o.columns * .4 end end,
+    open_mapping = [[<c-t>]],
+    shade_terminals = true,
+    shade_factor = "1",
+    start_in_insert = true,
+    insert_mappings = true,
+    terminal_mappings = true,
+    persist_size = true,
+    persist_mode = true,
+    direction = 'horizontal',
+    auto_scroll = true,
+}
 
 --Git
 require('gitsigns').setup()
