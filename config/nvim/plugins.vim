@@ -53,4 +53,6 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'folke/zen-mode.nvim'
 "Ascii Image
 Plug 'samodostal/image.nvim'
+"Wakatime
+Plug 'wakatime/vim-wakatime'
 call plug#end()
