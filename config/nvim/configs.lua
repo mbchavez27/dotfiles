@@ -104,9 +104,9 @@ local lsp_defaults = {
   flags = {
     debounce_text_changes = 150,
   },
-  capabilities = require('cmp_nvim_lsp').update_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-  ),
+  -- capabilities = require('cmp_nvim_lsp').make_client_capabilities(
+  --   vim.lsp.protocol.make_client_capabilities()
+  -- ),
   on_attach = function(client, bufnr)
     vim.api.nvim_exec_autocmds('User', {pattern = 'LspAttached'})
   end
@@ -127,8 +127,8 @@ lspconfig.util.default_config = vim.tbl_deep_extend(
 lspconfig.tsserver.setup({
  autostart = true,
  on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        -- client.resolved_capabilities.document_formatting = false
+        -- client.resolved_capabilities.document_range_formatting = false
     end,
  capabilities = capabilities,
  root_dir = function(fname)    
@@ -143,16 +143,16 @@ lspconfig.emmet_ls.setup({
 lspconfig.html.setup {
  autostart = true,
  on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        -- client.resolved_capabilities.document_formatting = false
+        -- client.resolved_capabilities.document_range_formatting = false
     end,
  capabilities = capabilities,
 }
 lspconfig.cssls.setup {
  autostart = true,
  on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        -- client.resolved_capabilities.document_formatting = false
+        -- client.resolved_capabilities.document_range_formatting = false
     end,
  capabilities = capabilities,
 }
@@ -170,8 +170,8 @@ lspconfig.eslint.setup {
 lspconfig.jsonls.setup {
  autostart = true,
  on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        -- client.resolved_capabilities.document_formatting = false
+        -- client.resolved_capabilities.document_range_formatting = false
     end,
  capabilities = capabilities,
 }
@@ -180,8 +180,8 @@ lspconfig.jsonls.setup {
 lspconfig.rust_analyzer.setup({
  autostart = true,
  on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        -- client.resolved_capabilities.document_formatting = false
+        -- client.resolved_capabilities.document_range_formatting = false
     end,
  capabilities = capabilities,
 })
@@ -403,19 +403,20 @@ require("null-ls").setup({
     },
 })
 
---Terminal 
-local powershell_options = {
-  shell = vim.fn.executable "pwsh" and "pwsh" or "powershell",
-  shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
-  shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
-  shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
-  shellquote = "",
-  shellxquote = "",
-}
-
-for option, value in pairs(powershell_options) do
-  vim.opt[option] = value
-end
+-- --Terminal 
+-- local powershell_options = {
+--   shell = vim.fn.executable "pwsh" and "pwsh" or "powershell",
+--   shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+--   shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+--   shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
+--   shellquote = "",
+--   shellxquote = "",
+-- }
+--
+-- -- for option, value in pairs(powershell_options) do
+-- --   vim.opt[option] = value
+-- -- end
+--
 require("toggleterm").setup{
     size = function(terminal) if terminal.direction == "horizontal" then return 15
             elseif terminal.direction == "vertical" then return vim.o.columns * .4 end end,
