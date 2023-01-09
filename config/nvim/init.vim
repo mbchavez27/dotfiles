@@ -82,17 +82,18 @@ nnoremap <silent> gr <Cmd>Lspsaga rename<CR>
 nnoremap <silent> cd <Cmd>Lspsaga show_line_diagnostics<CR>
 nnoremap <silent> [e<Cmd>Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent> ]e<Cmd>Lspsaga diagnostic_jump_prev<CR>
-lua <<EOF
-local action = require("lspsaga.action")
--- scroll down hover doc or scroll in definition preview
-vim.keymap.set("n", "<C-n>", function()
-    action.smart_scroll_with_saga(1)
-end, { silent = true })
--- scroll up hover doc
-vim.keymap.set("n", "<C-p>", function()
-    action.smart_scroll_with_saga(-1)
-end, { silent = true })
-EOF
+
+" lua <<EOF
+"  local action = require("lspsaga.action")
+"  -- scroll down hover doc or scroll in definition preview
+"  vim.keymap.set("n", "<C-n>", function()
+"      action.smart_scroll_with_saga(1)
+"  end, { silent = true })
+"  -- scroll up hover doc
+"  vim.keymap.set("n", "<C-p>", function()
+"      action.smart_scroll_with_saga(-1)
+"  end, { silent = true })
+" EOF
 
 "Zen Mode 
 nnoremap <silent> zz <CMD>:ZenMode<CR>
