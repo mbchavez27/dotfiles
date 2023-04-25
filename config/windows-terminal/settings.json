@@ -39,7 +39,7 @@
         "defaults": 
         {
             "backgroundImage": "F:\\Max's Files\\Gallery\\Pictures\\Special Pictures\\Games\\Genshin Impact\\Pictures\\yae wallpaper.jpg",
-            "backgroundImageOpacity": 0.14999999999999999,
+            "backgroundImageOpacity": 0.20000000000000001,
             "backgroundImageStretchMode": "uniformToFill",
             "colorScheme": "Gruvbox Dark",
             "cursorHeight": 100,
@@ -52,7 +52,7 @@
                 "weight": "light"
             },
             "intenseTextStyle": "bright",
-            "opacity": 100,
+            "opacity": 0,
             "padding": "8",
             "scrollbarState": "hidden",
             "useAcrylic": true
@@ -358,6 +358,29 @@
             "selectionBackground": "#FFFFFF",
             "white": "#D3D7CF",
             "yellow": "#C4A000"
+        },
+        {
+            "background": "#1A1B2C",
+            "black": "#414868",
+            "blue": "#7AA2F7",
+            "brightBlack": "#414868",
+            "brightBlue": "#7AA2F7",
+            "brightCyan": "#7DCFFF",
+            "brightGreen": "#73DACA",
+            "brightPurple": "#BB9AF7",
+            "brightRed": "#F7768E",
+            "brightWhite": "#C0CAF5",
+            "brightYellow": "#E0AF68",
+            "cursorColor": "#C0CAF5",
+            "cyan": "#7DCFFF",
+            "foreground": "#A9B1DC",
+            "green": "#73DACA",
+            "name": "Tokyo Night",
+            "purple": "#BB9AF7",
+            "red": "#F7768E",
+            "selectionBackground": "#28344A",
+            "white": "#C0CAF5",
+            "yellow": "#E0AF68"
         },
         {
             "background": "#300A24",
