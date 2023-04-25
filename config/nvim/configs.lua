@@ -124,30 +124,30 @@ lspconfig.util.default_config = vim.tbl_deep_extend(
 
 --Servers
 --Web Development
-lspconfig.tsserver.setup({
- autostart = true,
- on_attach = function(client)
-        -- client.resolved_capabilities.document_formatting = false
-        -- client.resolved_capabilities.document_range_formatting = false
-    end,
- capabilities = capabilities,
- root_dir = function(fname)    
-        return vim.loop.cwd()
-    end,
-})
+-- lspconfig.tsserver.setup({
+--  autostart = true,
+--  on_attach = function(client)
+--         -- client.resolved_capabilities.document_formatting = false
+--         -- client.resolved_capabilities.document_range_formatting = false
+--     end,
+--  capabilities = capabilities,
+--  root_dir = function(fname)    
+--         return vim.loop.cwd()
+--     end,
+-- })
 lspconfig.emmet_ls.setup({
  autostart = true,
  on_attach = on_attach,
  capabilities = capabilities,
 })
-lspconfig.html.setup {
- autostart = true,
- on_attach = function(client)
-        -- client.resolved_capabilities.document_formatting = false
-        -- client.resolved_capabilities.document_range_formatting = false
-    end,
- capabilities = capabilities,
-}
+-- lspconfig.html.setup {
+--  autostart = true,
+--  on_attach = function(client)
+--         -- client.resolved_capabilities.document_formatting = false
+--         -- client.resolved_capabilities.document_range_formatting = false
+--     end,
+--  capabilities = capabilities,
+-- }
 lspconfig.cssls.setup {
  autostart = true,
  on_attach = function(client)
