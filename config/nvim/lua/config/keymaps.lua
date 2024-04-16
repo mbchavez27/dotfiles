@@ -5,10 +5,6 @@
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
-local discipline = require("mbchavez.discipline")
-
-discipline.kalma()
-
 -- Increment/decrement
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "-", "<C-x>")
