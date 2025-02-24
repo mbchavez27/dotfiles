@@ -1,19 +1,33 @@
 return {
-  "williamboman/mason.nvim",
-  dependencies = { "williamboman/mason-lspconfig.nvim" },
-  opts = {
-    ensure_installed = {
-      "clang-format", -- C
-      "prettier", -- JavaScript, TypeScript, HTML, CSS
-      "gofumpt", -- Go
-      "goimports", -- Go
-      "clangd", -- C/C++ LSP
-      "tsserver", -- TypeScript LSP
-      "html", -- HTML LSP
-      "cssls", -- CSS LSP
-      "gopls", -- Go LSP
-      "stylua", -- Lua
+  {
+    "williamboman/mason.nvim",
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+      "neovim/nvim-lspconfig",
     },
+    opts = {
+      ensure_installed = { -- Mason handles tools and formatters
+        "clang-format", -- Formatter for C
+        "prettier", -- Formatter for JS/TS/HTML/CSS
+        "gofumpt", -- Formatter for Go
+        "goimports", -- Formatter for Go
+        "stylua", -- Formatter for Lua
+      },
+    },
+    config = function()
+      require("mason").setup()
+
+      -- LSP servers should be configured via mason-lspconfig
+      require("mason-lspconfig").setup({
+        ensure_installed = { -- These are actual LSP servers
+          "clangd", -- C/C++
+          "typescript-language-server", -- Change from "tsserver"
+          "html", -- HTML
+          "cssls", -- CSS
+          "gopls", -- Go
+        },
+      })
+    end,
   },
 
   {

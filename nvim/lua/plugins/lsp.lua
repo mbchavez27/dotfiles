@@ -106,8 +106,9 @@ return {
       local have_mason, mlsp = pcall(require, "mason-lspconfig")
       if have_mason then
         mlsp.setup({
-          ensure_installed = { "html", "cssls", "tsserver", "gopls", "clangd" },
+          ensure_installed = { "html", "cssls", "gopls", "clangd" },
           handlers = { setup },
+          automatic_installation = true,
         })
       end
     end,
