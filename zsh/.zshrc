@@ -121,3 +121,6 @@ export PATH=$PATH:/home/mbchavez/.spicetify
 export PATH="$HOME/.spicetify:$PATH"
 export PATH="$HOME/.spicetify:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+
+# run docker mysql
+alias mysql-docker="docker exec -it mysql-docker mysql -u root -p -h 127.0.0.1"
