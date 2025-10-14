@@ -1,26 +1,16 @@
 return {
-  -- LSP Management
   {
     "neovim/nvim-lspconfig",
     event = "LazyFile",
     dependencies = {
       "mason.nvim",
       { "mason-org/mason-lspconfig.nvim", config = function() end },
-      "hrsh7th/nvim-cmp",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-      "rafamadriz/friendly-snippets",
-      "ray-x/lsp_signature.nvim",
-      "j-hui/fidget.nvim",
-      "folke/trouble.nvim",
-      "simrat39/rust-tools.nvim", -- optional Rust enhancement
     },
     opts = function()
       ---@class PluginLspOpts
       local ret = {
+        -- options for vim.diagnostic.config()
+        ---@type vim.diagnostic.Opts
         diagnostics = {
           underline = true,
           update_in_insert = false,
@@ -28,6 +18,8 @@ return {
             spacing = 4,
             source = "if_many",
             prefix = "●",
+            -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
+            -- prefix = "icons",
           },
           severity_sort = true,
           signs = {
@@ -39,29 +31,73 @@ return {
             },
           },
         },
-        inlay_hints = { enabled = true, exclude = { "vue" } },
-        codelens = { enabled = true },
-        folds = { enabled = true },
-        capabilities = {
-          workspace = { fileOperations = { didRename = true, willRename = true } },
+        -- Enable this to enable the builtin LSP inlay hints on Neovim.
+        -- Be aware that you also will need to properly configure your LSP server to
+        -- provide the inlay hints.
+        inlay_hints = {
+          enabled = true,
+          exclude = { "vue" }, -- filetypes for which you don't want to enable inlay hints
         },
-        format = { formatting_options = nil, timeout_ms = nil },
+        -- Enable this to enable the builtin LSP code lenses on Neovim.
+        -- Be aware that you also will need to properly configure your LSP server to
+        -- provide the code lenses.
+        codelens = {
+          enabled = false,
+        },
+        -- Enable this to enable the builtin LSP folding on Neovim.
+        -- Be aware that you also will need to properly configure your LSP server to
+        -- provide the folds.
+        folds = {
+          enabled = true,
+        },
+        -- add any global capabilities here
+        capabilities = {
+          workspace = {
+            fileOperations = {
+              didRename = true,
+              willRename = true,
+            },
+          },
+        },
+        -- options for vim.lsp.buf.format
+        -- `bufnr` and `filter` is handled by the LazyVim formatter,
+        -- but can be also overridden when specified
+        format = {
+          formatting_options = nil,
+          timeout_ms = nil,
+        },
+        -- LSP Server Settings
+        ---@alias lazyvim.lsp.Config vim.lsp.Config|{mason?:boolean, enabled?:boolean}
+        ---@type table<string, lazyvim.lsp.Config|boolean>
         servers = {
           stylua = { enabled = false },
           tsserver = {},
           pyright = {},
-          rust_analyzer = {},
           jdtls = {},
-          clangd = {},
+          jsonls = {},
           html = {},
           cssls = {},
+          prettierd = {},
           lua_ls = {
+            -- mason = false, -- set to false if you don't want this server to be installed with mason
+            -- Use this to add any additional keymaps
+            -- for specific lsp servers
+            -- ---@type LazyKeysSpec[]
+            -- keys = {},
             settings = {
               Lua = {
-                workspace = { checkThirdParty = false },
-                codeLens = { enable = true },
-                completion = { callSnippet = "Replace" },
-                doc = { privateName = { "^_" } },
+                workspace = {
+                  checkThirdParty = false,
+                },
+                codeLens = {
+                  enable = true,
+                },
+                completion = {
+                  callSnippet = "Replace",
+                },
+                doc = {
+                  privateName = { "^_" },
+                },
                 hint = {
                   enable = true,
                   setType = false,
@@ -74,15 +110,27 @@ return {
             },
           },
         },
-        setup = {},
+        -- you can do any additional lsp server setup here
+        -- return true if you don't want this server to be setup with lspconfig
+        ---@type table<string, fun(server:string, opts: vim.lsp.Config):boolean?>
+        setup = {
+          -- example to setup with typescript.nvim
+          -- tsserver = function(_, opts)
+          --   require("typescript").setup({ server = opts })
+          --   return true
+          -- end,
+          -- Specify * to use this function as a fallback for any server
+          -- ["*"] = function(server, opts) end,
+        },
       }
       return ret
     end,
+    ---@param opts PluginLspOpts
     config = vim.schedule_wrap(function(_, opts)
-      -- Setup autoformat
+      -- setup autoformat
       LazyVim.format.register(LazyVim.lsp.formatter())
 
-      -- Setup keymaps
+      -- setup keymaps
       LazyVim.lsp.on_attach(function(client, buffer)
         require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
       end)
@@ -90,7 +138,7 @@ return {
       LazyVim.lsp.setup()
       LazyVim.lsp.on_dynamic_capability(require("lazyvim.plugins.lsp.keymaps").on_attach)
 
-      -- Inlay hints
+      -- inlay hints
       if opts.inlay_hints.enabled then
         LazyVim.lsp.on_supports_method("textDocument/inlayHint", function(client, buffer)
           if
@@ -103,7 +151,7 @@ return {
         end)
       end
 
-      -- Folds
+      -- folds
       if opts.folds.enabled then
         LazyVim.lsp.on_supports_method("textDocument/foldingRange", function(client, buffer)
           if LazyVim.set_default("foldmethod", "expr") then
@@ -112,7 +160,7 @@ return {
         end)
       end
 
-      -- Code lens
+      -- code lens
       if opts.codelens.enabled and vim.lsp.codelens then
         LazyVim.lsp.on_supports_method("textDocument/codeLens", function(client, buffer)
           vim.lsp.codelens.refresh()
@@ -123,7 +171,7 @@ return {
         end)
       end
 
-      -- Diagnostics
+      -- diagnostics
       if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
         opts.diagnostics.virtual_text.prefix = function(diagnostic)
           local icons = LazyVim.config.icons.diagnostics
@@ -141,31 +189,36 @@ return {
         vim.lsp.config("*", { capabilities = opts.capabilities })
       end
 
-      -- Mason LSP servers
+      -- get all the servers that are available through mason-lspconfig
       local have_mason = LazyVim.has("mason-lspconfig.nvim")
       local mason_all = have_mason
           and vim.tbl_keys(require("mason-lspconfig.mappings").get_mason_map().lspconfig_to_package)
-        or {}
-      local mason_exclude = {}
+        or {} --[[ @as string[] ]]
+      local mason_exclude = {} ---@type string[]
+
+      ---@return boolean? exclude automatic setup
       local function configure(server)
         local sopts = opts.servers[server]
-        sopts = sopts == true and {} or (not sopts) and { enabled = false } or sopts
+        sopts = sopts == true and {} or (not sopts) and { enabled = false } or sopts --[[@as lazyvim.lsp.Config]]
+
         if sopts.enabled == false then
           mason_exclude[#mason_exclude + 1] = server
           return
         end
+
         local use_mason = sopts.mason ~= false and vim.tbl_contains(mason_all, server)
         local setup = opts.setup[server] or opts.setup["*"]
         if setup and setup(server, sopts) then
           mason_exclude[#mason_exclude + 1] = server
         else
-          vim.lsp.config(server, sopts)
+          vim.lsp.config(server, sopts) -- configure the server
           if not use_mason then
             vim.lsp.enable(server)
           end
         end
         return use_mason
       end
+
       local install = vim.tbl_filter(configure, vim.tbl_keys(opts.servers))
       if have_mason then
         require("mason-lspconfig").setup({
@@ -176,8 +229,13 @@ return {
     end),
   },
 
-  -- Mason
   {
+    "mason.nvim",
+    { "mason-org/mason-lspconfig.nvim", config = function() end },
+  },
+  { "mason-org/mason-lspconfig.nvim", config = function() end },
+  {
+
     "mason-org/mason.nvim",
     cmd = "Mason",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
@@ -187,23 +245,27 @@ return {
       ensure_installed = {
         "stylua",
         "shfmt",
-        "tsserver",
+        "prettier",
+        "prettierd",
+        "eslint_d",
         "pyright",
-        "rust_analyzer",
         "jdtls",
-        "clangd",
-        "html",
-        "cssls",
       },
     },
+    ---@param opts MasonSettings | {ensure_installed: string[]}
     config = function(_, opts)
       require("mason").setup(opts)
       local mr = require("mason-registry")
       mr:on("package:install:success", function()
         vim.defer_fn(function()
-          require("lazy.core.handler.event").trigger({ event = "FileType", buf = vim.api.nvim_get_current_buf() })
+          -- trigger FileType event to possibly load this newly installed LSP server
+          require("lazy.core.handler.event").trigger({
+            event = "FileType",
+            buf = vim.api.nvim_get_current_buf(),
+          })
         end, 100)
       end)
+
       mr.refresh(function()
         for _, tool in ipairs(opts.ensure_installed) do
           local p = mr.get_package(tool)
@@ -212,68 +274,6 @@ return {
           end
         end
       end)
-    end,
-  },
-  { "mason-org/mason-lspconfig.nvim", config = function() end },
-
-  -- Optional VSCode-like enhancements
-  "j-hui/fidget.nvim",
-  "folke/trouble.nvim",
-
-  -- CMP + LuaSnip for IntelliSense
-  {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "rafamadriz/friendly-snippets",
-    },
-    config = function()
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-
-      require("luasnip.loaders.from_vscode").lazy_load()
-
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        mapping = {
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          ["<C-Space>"] = cmp.mapping.complete(),
-        },
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "buffer" },
-          { name = "path" },
-        }),
-        experimental = { ghost_text = true },
-      })
     end,
   },
 }
