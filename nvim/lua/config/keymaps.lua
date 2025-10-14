@@ -24,3 +24,6 @@ map("i", "<C-s>", "<Esc>:w<CR>a", opts)
 
 -- Format (VSCode formatOnSave)
 map("n", "<leader>f", ":lua vim.lsp.buf.format()<CR>", opts)
+
+-- LazyGit (open in floating window)
+map("n", "<leader>g", ":LazyGit<CR>", opts)
