@@ -1,3 +1,18 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+-- Bootstrap Lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git", "clone", "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", lazypath
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
+-- Load plugins
+require("plugins")
+
+-- Core settings
+require("core.settings")
+require("core.keymaps")
+require("core.themes")
