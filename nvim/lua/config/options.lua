@@ -21,6 +21,8 @@ vim.o.showcmd = true
 vim.o.signcolumn = "yes" -- like gutter
 vim.o.termguicolors = true
 vim.o.background = "dark"
+vim.o.foldenable = false
+vim.o.foldmethod = "manual"
 
 -- Search
 vim.o.ignorecase = true
