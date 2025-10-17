@@ -1,4 +1,5 @@
 return {
+  { "markdown-preview.nvim" },
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
