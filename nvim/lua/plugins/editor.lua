@@ -1,5 +1,9 @@
 return {
-  { "markdown-preview.nvim" },
+  {
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && npm install", -- required to build the plugin
+    ft = { "markdown" }, -- optional: load only for markdown files
+  },
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
