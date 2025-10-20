@@ -250,6 +250,7 @@ return {
         "eslint_d",
         "pyright",
         "jdtls",
+        "typescript-language-server",
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
