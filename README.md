@@ -1,2 +1,3 @@
-# nextGenTechConfig
-My new Config for Fedora...
+# mbchavezz
+
+my dotfiles @mbchavezz on ig (dont judge my dotfiles please)
