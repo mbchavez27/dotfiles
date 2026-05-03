@@ -15,6 +15,9 @@
       "git commit *": "allow",
       "rm -rf *": "deny",
       "sudo *": "deny"
+    },
+    "skills": {
+      "*": "allow"
     }
   },
 
