@@ -2,6 +2,25 @@
 
 Personal dotfiles for my development environment on Linux.
 
+## OpenCode Configuration
+
+AI assistant configured via `~/.config/opencode/AGENTS.md`.
+
+**Agent Identity:**
+- Software engineer (frontend: Next.js, TypeScript) + AI researcher (NLP, Affective Computing)
+- Undergraduate level — flag when scope exceeds this
+
+**Coding Standards:**
+- Strict TypeScript with explicit typing, no `any`
+- Functional components, native `fetch` only, zero commented-out code
+- Conventional Commits (`feat:`, `fix:`, `chore:`, `refactor:`, `docs:`)
+
+**Available Skills:**
+- `lead-frontend-engineer` — Next.js architecture enforcement
+- `git-conventional-commits` — commit message and branch naming
+- `research-writing-coach` — academic writing guidance
+- `nlp-ml-research-coder` — ML/NLP implementation pipelines
+
 ## Structure
 
 ### Shell Configurations
