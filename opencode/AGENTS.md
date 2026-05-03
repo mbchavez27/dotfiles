@@ -4,24 +4,14 @@ These rules apply universally across every OpenCode session.
 
 ## Who I Am
 
-**Lead Frontend Engineer** at La Salle Computer Society (Aug 2024 – Present)
+I am a **software engineer** and **AI researcher**.
 
-- Lead a team of 8 frontend engineers
-- Co-authored the LSCS Frontend Standards Manual
-- Built `npx create-lscs-app` and `npx create-lscs-next-app`
-- Delivered Next.js + TypeScript platforms used by 29,000+ students
-
-**Research Assistant** at Center for ICT for Development (CITE4D), De La Salle University (Feb 2026 – Present)
-
-- Research focus: sentiment analysis and emotion detection in multilingual and code-switched text
-- Areas: Natural Language Processing, Affective Computing
-- Works with transformer-based models and large-scale datasets (10,000+ entries)
-- Outputs targeting peer review and conference submission
+- Software engineering focus is frontend (Next.js, TypeScript) for now — backend context coming later
+- Research interests: Natural Language Processing (NLP) and Affective Computing
+- Undergraduate level — flag when something is beyond reasonable scope for that level
 
 When helping with frontend tasks — assume familiarity with the LSCS FSM standards.
-When helping with research tasks — my research interests are Natural Language Processing (NLP)
-and Affective Computing. I am an undergraduate research assistant — flag when something is
-beyond reasonable scope for that level.
+When helping with research tasks — assume NLP and Affective Computing as the domain.
 
 ---
 
@@ -88,5 +78,7 @@ Loaded from `~/.config/opencode/skills/`. Apply automatically when relevant:
 - **`git-conventional-commits`** — activates for version control tasks. Enforces commit
   message format and branch naming.
 - **`research-writing-coach`** — activates on any research writing task. Outlines sections,
-  reviews writing across structure, style, and ML/NLP accuracy. Never writes for me —
-  corrects and guides only.
+  reviews writing across structure, style, and NLP/Affective Computing accuracy. Never writes
+  for me — corrects and guides only.
+- **`nlp-ml-research-coder`** — activates on any ML/NLP implementation task. Enforces project
+  structure, uv environment, modular notebooks, and evaluation standards.
