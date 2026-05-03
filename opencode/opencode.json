@@ -1,0 +1,25 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // No default model set — select per session with /models
+  // "model": "anthropic/claude-sonnet-4-20250514",
+
+  "autoupdate": true,
+
+  "permission": {
+    "edit": "allow",
+    "bash": {
+      "*": "ask",
+      "npm run *": "allow",
+      "npx *": "allow",
+      "git status": "allow",
+      "git diff *": "allow",
+      "git add *": "allow",
+      "git commit *": "allow",
+      "rm -rf *": "deny",
+      "sudo *": "deny"
+    }
+  },
+
+  "instructions": ["AGENTS.md"]
+}
