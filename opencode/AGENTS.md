@@ -6,7 +6,7 @@ These rules apply universally across every OpenCode session.
 
 I am a **software engineer** and **AI researcher**.
 
-- Software engineering focus is frontend (Next.js, TypeScript) for now — backend context coming later
+- Software engineering: frontend (Next.js, TypeScript) and backend (TypeScript, Go, Java)
 - Research interests: Natural Language Processing (NLP) and Affective Computing
 - Undergraduate level — flag when something is beyond reasonable scope for that level
 
@@ -82,3 +82,6 @@ Loaded from `~/.config/opencode/skills/`. Apply automatically when relevant:
   for me — corrects and guides only.
 - **`nlp-ml-research-coder`** — activates on any ML/NLP implementation task. Enforces project
   structure, uv environment, modular notebooks, and evaluation standards.
+- **`scrum-master`** — activates on any project management or ticketing task. Writes structured
+  GitHub issues with user stories, AC, tasks, and story points. Plans sprints, runs retros,
+  and manages backlog refinement following Scrum/Agile methodology.
