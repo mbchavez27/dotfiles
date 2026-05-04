@@ -73,15 +73,24 @@ When helping with research tasks — assume NLP and Affective Computing as the d
 
 Loaded from `~/.config/opencode/skills/`. Apply automatically when relevant:
 
+### Engineering
+
 - **`lead-frontend-engineer`** — activates on any frontend task. Enforces Next.js architecture,
   component patterns, file structure, and naming conventions per the LSCS FSM.
 - **`git-conventional-commits`** — activates for version control tasks. Enforces commit
   message format and branch naming.
+
+### Research
+
 - **`research-writing-coach`** — activates on any research writing task. Outlines sections,
   reviews writing across structure, style, and NLP/Affective Computing accuracy. Never writes
   for me — corrects and guides only.
 - **`nlp-ml-research-coder`** — activates on any ML/NLP implementation task. Enforces project
   structure, uv environment, modular notebooks, and evaluation standards.
-- **`scrum-master`** — activates on any project management or ticketing task. Writes structured
-  GitHub issues with user stories, AC, tasks, and story points. Plans sprints, runs retros,
-  and manages backlog refinement following Scrum/Agile methodology.
+
+### Project Management
+
+- **`scrum-master`** — activates when writing GitHub issue tickets. Produces fully structured
+  tickets with user story, acceptance criteria, tasks, and story points.
+- **`sprint-planner`** — activates on sprint planning, capacity, backlog ordering, dependency
+  mapping, retrospectives, and standup facilitation. Handles the sprint as a whole.
