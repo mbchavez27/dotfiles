@@ -1,6 +1,14 @@
 {
   "extras": [
-
+    "coding.blink",
+    "dap.core",
+    "formatting.prettier",
+    "lang.docker",
+    "lang.go",
+    "lang.java",
+    "lang.lua",
+    "lang.python",
+    "lang.typescript"
   ],
   "install_version": 8,
   "news": {

@@ -1,10 +1,8 @@
 return {
   "kdheepak/lazygit.nvim",
-  cmd = "LazyGit", -- only load when :LazyGit is called
+  cmd = "LazyGit",
   config = function()
-    -- Optional: floating window settings
     require("lazygit").setup({
-      -- optional configuration
       float = { border = "rounded" },
     })
   end,

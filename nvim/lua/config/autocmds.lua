@@ -1,7 +1,6 @@
-local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
--- Highlight on yank like VSCode
+-- Highlight on yank
 autocmd("TextYankPost", {
   pattern = "*",
   callback = function()
@@ -9,7 +8,7 @@ autocmd("TextYankPost", {
   end,
 })
 
--- Filetype specific options
+-- Python: 4-space indent
 autocmd("FileType", {
   pattern = "python",
   callback = function()
@@ -19,6 +18,7 @@ autocmd("FileType", {
   end,
 })
 
+-- JS/TS/React: 2-space indent
 autocmd("FileType", {
   pattern = "javascript,typescript,javascriptreact,typescriptreact",
   callback = function()
@@ -28,16 +28,10 @@ autocmd("FileType", {
   end,
 })
 
--- Auto remove trailing whitespace on save
+-- Remove trailing whitespace on save
 autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
     vim.cmd([[%s/\s\+$//e]])
   end,
-})
-
--- VSCode-style cursor and folding
-autocmd("BufReadPost", {
-  pattern = "*",
-  command = "normal zR", -- open all folds like VSCode
 })
