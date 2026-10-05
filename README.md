@@ -70,6 +70,17 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
 
 ## Installation
 
+### Prerequisites
+
+- **Internet** — the installers download packages, Oh My Zsh, and plugins
+- **git** — needed for Step 1 (the clone itself):
+  - **macOS:** run `xcode-select --install`, or just `git --version` once —
+    macOS pops up the Xcode Command Line Tools installer automatically
+  - **Fedora:** `sudo dnf install git` (usually already installed —
+    check with `git --version`)
+- Nothing else needs to be installed manually — Homebrew (macOS) and all
+  packages, fonts, and Oh My Zsh are handled by the scripts in Step 2
+
 ### Step 1: Set up the dotfile repo (both OSes)
 
 ```bash
