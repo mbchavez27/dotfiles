@@ -118,6 +118,23 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export PATH="$HOME/.spicetify:$HOME/.local/bin:$HOME/.opencode/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+# Linux-only aliases (macOS has native 'open', no Ozone flags)
+if [[ "$(uname -s)" == "Linux" ]]; then
+  alias open='xdg-open'
+  alias code="code --ozone-platform=x11"
+fi
 
 # run docker mysql
 alias mysql-docker="docker exec -it mysql-docker mysql -u root -p -h 127.0.0.1"
+
+# SDKMAN (must stay after PATH exports)
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
