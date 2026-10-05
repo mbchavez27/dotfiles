@@ -23,14 +23,16 @@ if [ -d ~/.bashrc.d ]; then
   done
 fi
 unset rc
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 alias g='git'
-alias open='xdg-open'
 export PATH="$HOME/.npm-global/bin:$PATH"
+
+if [ "$(uname -s)" = "Linux" ]; then
+  alias open='xdg-open'
+  alias code='/usr/bin/code --enable-features=UseOzonePlatform --ozone-platform=x11'
+fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-alias code='/usr/bin/code --enable-features=UseOzonePlatform --ozone-platform=x11'
-alias code='/usr/bin/code --enable-features=UseOzonePlatform --ozone-platform=x11'
