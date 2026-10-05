@@ -10,7 +10,7 @@ fi
 
 echo "Detected: macOS $(sw_vers -productVersion)"
 
-if confirm "Install packages via Homebrew (zsh neovim git curl lazygit, alacritty + Nerd Font casks)?"; then
+if confirm "Install packages via Homebrew (zsh neovim git curl lazygit, wezterm + Nerd Font casks)?"; then
   if ! command -v brew >/dev/null 2>&1; then
     echo "Installing Homebrew..."
     brew_installer="$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || {
@@ -26,8 +26,8 @@ if confirm "Install packages via Homebrew (zsh neovim git curl lazygit, alacritt
   fi
 
   brew install zsh neovim git curl lazygit
-  brew install --cask alacritty
-  brew install --cask font-meslo-lg-nerd-font || \
+  brew install --cask wezterm
+  brew install --cask font-meslo-for-powerlevel10k || \
     echo "Warning: Nerd Font cask failed — prompt glyphs may render as boxes"
 fi
 

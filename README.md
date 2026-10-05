@@ -42,7 +42,10 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
 
 ### Terminal
 
-- **alacritty/alacritty.toml** - Alacritty terminal emulator settings with window opacity at 80%
+- **wezterm/wezterm.lua** - WezTerm terminal emulator settings:
+  - Window opacity at 80% (parity with the old Alacritty setup)
+  - MesloLGS NF Nerd Font at 12pt — matches the p10k prompt glyphs
+  - Symlinked to `~/.wezterm.lua` (flatpak-safe) and `~/.config/wezterm/wezterm.lua` (native/XDG)
 
 ### Editor
 
@@ -100,8 +103,11 @@ Do not move the folder after installing — the symlinks point into this clone.
 
 Prompts before installing:
 
-- `sudo dnf install zsh neovim git curl alacritty`
+- `sudo dnf install zsh neovim git curl`
 - `lazygit` via the atim COPR repo (needed for the nvim LazyGit keymap)
+- WezTerm via the official wezfurlong COPR (skipped if already installed —
+  both the `wezterm` command and the Flathub flatpak are detected).
+  Flatpak alternative: `flatpak install flathub org.wezfurlong.wezterm`
 - MesloLGS NF Nerd Font → `~/.local/share/fonts` (no RPM exists for it)
 
 Then installs Oh My Zsh + powerlevel10k + zsh-autosuggestions + zsh-syntax-highlighting,
@@ -118,7 +124,7 @@ Prompts before installing:
 
 - Homebrew (installed first if missing)
 - `brew install zsh neovim git curl lazygit`
-- `brew install --cask alacritty font-meslo-lg-nerd-font`
+- `brew install --cask wezterm font-meslo-for-powerlevel10k`
 
 Then the same Oh My Zsh setup, symlinks, and backups as Fedora.
 The script exits with a hint if run on the wrong OS — no flags needed.
@@ -151,24 +157,24 @@ The script exits with a hint if run on the wrong OS — no flags needed.
 #### Fedora
 
 ```bash
-fc-cache -fv    # refresh font cache if the script downloaded the font, then restart Alacritty
+fc-cache -fv    # refresh font cache if the script downloaded the font, then restart WezTerm
 ```
 
 Nothing else required — an existing Fedora setup keeps working as-is, and the
 Linux-only aliases (VS Code Ozone/X11, `xdg-open`) stay active.
+
+**WezTerm flatpak note:** the installer symlinks `~/.wezterm.lua`, which is the
+path the sandbox reads. If the config isn't picked up, check
+`flatpak info --show-permissions org.wezfurlong.wezterm` includes `--filesystem=home`.
 
 Optional: VS Code via `sudo dnf install code` (Microsoft repo) or
 `flatpak install com.visualstudio-code`.
 
 #### macOS
 
-- **Font:** if p10k glyphs are broken, add the family reported by `p10k diagnose`
-  to `~/.config/alacritty/alacritty.toml`:
-  ```toml
-  [font]
-  normal = { family = "MesloLGS Nerd Font" }
-  ```
-  (family names differ slightly from Fedora's — that's why it is not hardcoded)
+- **Font:** handled automatically — `wezterm.lua` sets `MesloLGS NF` and the
+  `font-meslo-for-powerlevel10k` cask installs exactly that family. If glyphs
+  are still boxes, run `p10k diagnose` to confirm the font is found
 - **VS Code (optional):** `brew install --cask visual-studio-code`, then
   `Cmd+Shift+P` → "Shell Command: Install 'code' in PATH"
   (the Ozone/X11 alias is Linux-only and stays off here)
@@ -185,18 +191,19 @@ ln -s ~/dotfiles/zsh/.p10k.zsh           ~/.p10k.zsh
 ln -s ~/dotfiles/bash/.bashrc            ~/.bashrc
 ln -s ~/dotfiles/bash/.bash_profile      ~/.bash_profile
 ln -s ~/dotfiles/nvim                    ~/.config/nvim
-ln -s ~/dotfiles/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
+ln -s ~/dotfiles/wezterm/wezterm.lua     ~/.wezterm.lua
+ln -s ~/dotfiles/wezterm/wezterm.lua     ~/.config/wezterm/wezterm.lua
 ln -s ~/dotfiles/opencode                ~/.config/opencode
 ```
 
 You still need: Oh My Zsh + powerlevel10k + the two zsh plugins, Neovim 0.9+,
-Alacritty, and a Nerd Font.
+WezTerm, and a Nerd Font.
 
 ## Requirements
 
 Installed by the scripts:
 
 - Oh My Zsh, powerlevel10k, zsh-autosuggestions, zsh-syntax-highlighting
-- Neovim 0.9+, Alacritty, lazygit, MesloLGS NF Nerd Font
+- Neovim 0.9+, WezTerm, lazygit, MesloLGS NF Nerd Font
 
 Not installed (see Step 3): opencode CLI, Rust, SDKMAN, nvm/Node, VS Code, Docker

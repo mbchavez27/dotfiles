@@ -80,7 +80,8 @@ run_symlinks() {
   symlink "$DOTFILES/bash/.bashrc" "$HOME/.bashrc"
   symlink "$DOTFILES/bash/.bash_profile" "$HOME/.bash_profile"
   symlink "$DOTFILES/nvim" "$HOME/.config/nvim"
-  symlink "$DOTFILES/alacritty/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
+  symlink "$DOTFILES/wezterm/wezterm.lua" "$HOME/.wezterm.lua"
+  symlink "$DOTFILES/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
   symlink "$DOTFILES/opencode" "$HOME/.config/opencode"
 }
 
@@ -90,7 +91,8 @@ print_summary() {
   echo ""
   echo "Next steps:"
   echo "  1. Restart the shell (new tab or: exec zsh)"
-  echo "  2. Run 'p10k diagnose' — if glyphs are boxes, set the terminal font to MesloLGS NF"
+  echo "  2. Run 'p10k diagnose' — if glyphs are boxes, MesloLGS NF is missing"
   echo "  3. Run 'nvim' once — LazyVim downloads plugins on first launch"
-  echo "  4. See README.md 'After Install' for what still needs manual setup"
+  echo "  4. Launch WezTerm — config comes from wezterm/wezterm.lua"
+  echo "  5. See README.md 'After Install' for what still needs manual setup"
 }
