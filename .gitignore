@@ -1,0 +1,9 @@
+# Exclude Claude session histories, logs, and authentication tokens
+.claude/sessions/
+.claude/settings.local.json
+.claude/plugins/
+
+# Exclude local Antigravity runtimes and active agent states
+.gemini/antigravity-cli/logs/
+.gemini/antigravity-cli/.state/
+
