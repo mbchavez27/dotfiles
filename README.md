@@ -148,18 +148,40 @@ The script exits with a hint if run on the wrong OS — no flags needed.
    # or: npm install -g opencode-ai
    # or (macOS): brew install anomalyco/tap/opencode
    ```
-3. **Git identity** (fresh machine):
+3. **Install the Claude Code CLI** (skills/settings already symlinked, the binary is not):
+   ```bash
+   curl -fsSL https://claude.ai/install.sh | bash   # recommended
+   # or: npm install -g @anthropic-ai/claude-code    # needs Node 22+
+   # or (macOS): brew install --cask claude-code
+   # or (Fedora): see code.claude.com/docs/quickstart for dnf/apt repo
+   claude --version
+   ```
+4. **Install Gemini CLI** (skills already symlinked, the binary is not):
+   ```bash
+   npm install -g @google/gemini-cli
+   # or (macOS/Linux): brew install gemini-cli
+   gemini --version
+   ```
+5. **Install Antigravity IDE** (no CLI package — GUI download):
+   Download from `antigravity.google/download` — macOS 12+ (ARM64) / Linux tarball
+   (Fedora 36+, glibc >= 2.28). Launch it once so `~/.gemini/antigravity-cli/`
+   exists, then re-run the installer to attach the `skills/` link.
+6. **Verify all AI links:**
+   ```bash
+   readlink ~/.config/opencode ~/.claude/skills ~/.claude/settings.json ~/.gemini/antigravity-cli/skills
+   ```
+7. **Git identity** (fresh machine):
    ```bash
    git config --global user.name "Your Name"
    git config --global user.email "you@example.com"
    ```
-4. **Toolchains** — the PATH lines in `.bashrc` stay inert until these exist:
+8. **Toolchains** — the PATH lines in `.bashrc` stay inert until these exist:
    - Rust/Cargo: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
    - Java (SDKMAN): `curl -s "https://get.sdkman.io" | bash`
    - Node: install nvm, then `nvm install --lts`
-5. **First `nvim` launch** — LazyVim downloads plugins automatically (~1–2 min,
+9. **First `nvim` launch** — LazyVim downloads plugins automatically (~1–2 min,
    needs network). Run `:Mason` later to install LSP servers per language
-6. Prompt shows boxes/tofu? The terminal font is not the Nerd Font — see per-OS steps below
+10. Prompt shows boxes/tofu? The terminal font is not the Nerd Font — see per-OS steps below
 
 #### Fedora
 
@@ -216,4 +238,4 @@ Installed by the scripts:
 - Oh My Zsh, powerlevel10k, zsh-autosuggestions, zsh-syntax-highlighting
 - Neovim 0.9+, WezTerm, lazygit, MesloLGS NF Nerd Font
 
-Not installed (see Step 3): opencode CLI, Rust, SDKMAN, nvm/Node, VS Code, Docker
+Not installed (see Step 3): opencode CLI, Claude Code CLI, Gemini CLI, Antigravity IDE, Rust, SDKMAN, nvm/Node, VS Code, Docker
