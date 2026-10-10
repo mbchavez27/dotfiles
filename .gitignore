@@ -1,3 +1,6 @@
+# macOS Finder metadata (not needed in repo)
+.DS_Store
+
 # Exclude Claude session histories, logs, and authentication tokens
 .claude/sessions/
 .claude/settings.local.json

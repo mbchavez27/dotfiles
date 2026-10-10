@@ -63,7 +63,14 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
 - **opencode/** - Global OpenCode configuration symlinked to `~/.config/opencode`:
   - `AGENTS.md` - agent identity and coding standards
   - `opencode.json` - permissions and instructions
-  - `skills/` - six custom skills (frontend, git, research, NLP, scrum, sprint)
+  - `skills/` - seven custom skills (frontend, git, research, NLP, scrum, sprint, software-engineering)
+
+- **claude/.claude/** - Claude Code configuration (granular symlinks, live state preserved):
+  - `skills/` → `~/.claude/skills` - same seven skills as opencode
+  - `settings.json` → `~/.claude/settings.json` - theme and preferences
+
+- **antigravity/.gemini/** - Antigravity/Gemini configuration (skills-only symlink):
+  - `antigravity-cli/skills/` → `~/.gemini/antigravity-cli/skills` - same seven skills; live `~/.gemini` state (conversations, cache, settings) is never overwritten
 
 ### Installer
 
@@ -194,6 +201,9 @@ ln -s ~/dotfiles/nvim                    ~/.config/nvim
 ln -s ~/dotfiles/wezterm/wezterm.lua     ~/.wezterm.lua
 ln -s ~/dotfiles/wezterm/wezterm.lua     ~/.config/wezterm/wezterm.lua
 ln -s ~/dotfiles/opencode                ~/.config/opencode
+ln -s ~/dotfiles/claude/.claude/skills    ~/.claude/skills
+ln -s ~/dotfiles/claude/.claude/settings.json ~/.claude/settings.json
+ln -s ~/dotfiles/antigravity/.gemini/antigravity-cli/skills ~/.gemini/antigravity-cli/skills
 ```
 
 You still need: Oh My Zsh + powerlevel10k + the two zsh plugins, Neovim 0.9+,

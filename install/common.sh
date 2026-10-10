@@ -83,6 +83,9 @@ run_symlinks() {
   symlink "$DOTFILES/wezterm/wezterm.lua" "$HOME/.wezterm.lua"
   symlink "$DOTFILES/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
   symlink "$DOTFILES/opencode" "$HOME/.config/opencode"
+  symlink "$DOTFILES/claude/.claude/skills" "$HOME/.claude/skills"
+  symlink "$DOTFILES/claude/.claude/settings.json" "$HOME/.claude/settings.json"
+  symlink "$DOTFILES/antigravity/.gemini/antigravity-cli/skills" "$HOME/.gemini/antigravity-cli/skills"
 }
 
 print_summary() {
