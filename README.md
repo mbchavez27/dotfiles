@@ -69,7 +69,7 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
   - `skills/` → `~/.claude/skills` - same seven skills as opencode
   - `settings.json` → `~/.claude/settings.json` - theme and preferences
 
-- **antigravity/.gemini/** - Antigravity/Gemini configuration (skills-only symlink):
+- **antigravity/.gemini/** - Antigravity CLI configuration (skills-only symlink):
   - `antigravity-cli/skills/` → `~/.gemini/antigravity-cli/skills` - same seven skills; live `~/.gemini` state (conversations, cache, settings) is never overwritten
 
 ### Installer
@@ -156,32 +156,29 @@ The script exits with a hint if run on the wrong OS — no flags needed.
    # or (Fedora): see code.claude.com/docs/quickstart for dnf/apt repo
    claude --version
    ```
-4. **Install Gemini CLI** (skills already symlinked, the binary is not):
+4. **Install Antigravity CLI** (skills already symlinked, the binary is not):
    ```bash
-   npm install -g @google/gemini-cli
-   # or (macOS/Linux): brew install gemini-cli
-   gemini --version
+   curl -fsSL https://antigravity.google/cli/install.sh | bash
+   agy --version
    ```
-5. **Install Antigravity IDE** (no CLI package — GUI download):
-   Download from `antigravity.google/download` — macOS 12+ (ARM64) / Linux tarball
-   (Fedora 36+, glibc >= 2.28). Launch it once so `~/.gemini/antigravity-cli/`
-   exists, then re-run the installer to attach the `skills/` link.
-6. **Verify all AI links:**
+   First launch signs in via Google and auto-imports legacy Gemini extensions.
+   Needs `~/.local/bin` on PATH.
+5. **Verify all AI links:**
    ```bash
    readlink ~/.config/opencode ~/.claude/skills ~/.claude/settings.json ~/.gemini/antigravity-cli/skills
    ```
-7. **Git identity** (fresh machine):
+6. **Git identity** (fresh machine):
    ```bash
    git config --global user.name "Your Name"
    git config --global user.email "you@example.com"
    ```
-8. **Toolchains** — the PATH lines in `.bashrc` stay inert until these exist:
+7. **Toolchains** — the PATH lines in `.bashrc` stay inert until these exist:
    - Rust/Cargo: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
    - Java (SDKMAN): `curl -s "https://get.sdkman.io" | bash`
    - Node: install nvm, then `nvm install --lts`
-9. **First `nvim` launch** — LazyVim downloads plugins automatically (~1–2 min,
+8. **First `nvim` launch** — LazyVim downloads plugins automatically (~1–2 min,
    needs network). Run `:Mason` later to install LSP servers per language
-10. Prompt shows boxes/tofu? The terminal font is not the Nerd Font — see per-OS steps below
+9. Prompt shows boxes/tofu? The terminal font is not the Nerd Font — see per-OS steps below
 
 #### Fedora
 
@@ -238,4 +235,4 @@ Installed by the scripts:
 - Oh My Zsh, powerlevel10k, zsh-autosuggestions, zsh-syntax-highlighting
 - Neovim 0.9+, WezTerm, lazygit, MesloLGS NF Nerd Font
 
-Not installed (see Step 3): opencode CLI, Claude Code CLI, Gemini CLI, Antigravity IDE, Rust, SDKMAN, nvm/Node, VS Code, Docker
+Not installed (see Step 3): opencode CLI, Claude Code CLI, Antigravity CLI, Rust, SDKMAN, nvm/Node, VS Code, Docker
