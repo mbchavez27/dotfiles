@@ -40,3 +40,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # Added by Antigravity CLI installer
 export PATH="/Users/mbchavezz/.local/bin:$PATH"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/mbchavez/.local/bin:$PATH"

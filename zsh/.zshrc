@@ -143,3 +143,7 @@ export PATH=/opt/homebrew/opt/openjdk@21/bin:$PATH
 
 # Added by Antigravity CLI installer
 export PATH="/Users/mbchavezz/.local/bin:$PATH"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/mbchavez/.local/bin:$PATH"
