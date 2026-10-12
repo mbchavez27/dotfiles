@@ -1,7 +1,6 @@
 {
   "theme": {
-    "name": "system",
-    "mode": "system"
+    "name": "gruvbox-transparent",
+    "mode": "dark"
   }
 }
-

@@ -63,6 +63,8 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
 - **opencode/** - Global OpenCode configuration symlinked to `~/.config/opencode`:
   - `AGENTS.md` - agent identity and coding standards
   - `opencode.json` - permissions and instructions
+  - `cli.json` - TUI settings (theme selection: `gruvbox-transparent`, dark mode)
+  - `themes/gruvbox-transparent.json` - custom transparent gruvbox TUI theme
   - `skills/` - seven custom skills (frontend, git, research, NLP, scrum, sprint, software-engineering)
 
 - **claude/.claude/** - Claude Code configuration (granular symlinks, live state preserved):
