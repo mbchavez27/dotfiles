@@ -10,3 +10,6 @@
 .gemini/antigravity-cli/logs/
 .gemini/antigravity-cli/.state/
 
+# Exclude local OpenCode secrets
+opencode/service.json
+
