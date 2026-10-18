@@ -1,3 +1,7 @@
 {
-  "theme": "dark"
+  "theme": "auto",
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  }
 }

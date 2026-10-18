@@ -3,6 +3,9 @@
 
 # Exclude Claude session histories, logs, and authentication tokens
 .claude/sessions/
+
+# Claude-managed skill sync cache (machine-local)
+claude/.claude/skills/synced/
 .claude/settings.local.json
 .claude/plugins/
 
