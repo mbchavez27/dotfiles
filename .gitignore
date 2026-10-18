@@ -2,12 +2,13 @@
 .DS_Store
 
 # Exclude Claude session histories, logs, and authentication tokens
-.claude/sessions/
+# (paths are relative to this file, hence the claude/ prefix)
+claude/.claude/sessions/
+claude/.claude/settings.local.json
+claude/.claude/plugins/
 
 # Claude-managed skill sync cache (machine-local)
 claude/.claude/skills/synced/
-.claude/settings.local.json
-.claude/plugins/
 
 # Exclude local Antigravity runtimes and active agent states
 .gemini/antigravity-cli/logs/
