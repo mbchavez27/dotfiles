@@ -26,10 +26,10 @@ if confirm "Install packages via dnf (zsh neovim git curl)?"; then
   fi
 fi
 
-if ! command -v wezterm >/dev/null 2>&1 && ! flatpak info org.wezfurlong.wezterm >/dev/null 2>&1; then
-  if confirm "WezTerm not found — install via official wezfurlong COPR?"; then
-    sudo dnf copr enable -y wezfurlong/wezterm-nightly
-    sudo dnf install -y wezterm || sudo dnf install -y wezterm-common wezterm-mux-server
+if ! command -v ghostty >/dev/null 2>&1; then
+  if confirm "Ghostty not found — install via the scottames COPR?"; then
+    sudo dnf copr enable -y scottames/ghostty
+    sudo dnf install -y ghostty
   fi
 fi
 
@@ -43,7 +43,7 @@ if command -v fc-list >/dev/null 2>&1 && ! fc-list | grep -qi "MesloLGS NF"; the
         -o "$font_dir/MesloLGS NF ${style}.ttf"
     done
     fc-cache -f
-    echo "Installed: MesloLGS NF (restart WezTerm to pick it up)"
+    echo "Installed: MesloLGS NF (restart Ghostty to pick it up)"
   fi
 fi
 

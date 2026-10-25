@@ -42,10 +42,12 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
 
 ### Terminal
 
-- **wezterm/wezterm.lua** - WezTerm terminal emulator settings:
-  - Window opacity at 80% (parity with the old Alacritty setup)
+- **ghostty/config** - Ghostty terminal emulator settings:
+  - Window opacity at 80% with background blur, 8px padding
   - MesloLGS NF Nerd Font at 12pt — matches the p10k prompt glyphs
-  - Symlinked to `~/.wezterm.lua` (flatpak-safe) and `~/.config/wezterm/wezterm.lua` (native/XDG)
+  - `Gruvbox Dark Hard` theme (built in, no plugin needed)
+  - Symlinked to `~/.config/ghostty/config` — Ghostty reads that XDG path on
+    both Fedora and macOS
 
 ### Editor
 
@@ -114,9 +116,8 @@ Prompts before installing:
 
 - `sudo dnf install zsh neovim git curl`
 - `lazygit` via the atim COPR repo (needed for the nvim LazyGit keymap)
-- WezTerm via the official wezfurlong COPR (skipped if already installed —
-  both the `wezterm` command and the Flathub flatpak are detected).
-  Flatpak alternative: `flatpak install flathub org.wezfurlong.wezterm`
+- Ghostty via the `scottames/ghostty` COPR (skipped if the `ghostty`
+  command already exists)
 - MesloLGS NF Nerd Font → `~/.local/share/fonts` (no RPM exists for it)
 
 Then installs Oh My Zsh + powerlevel10k + zsh-autosuggestions + zsh-syntax-highlighting,
@@ -133,7 +134,7 @@ Prompts before installing:
 
 - Homebrew (installed first if missing)
 - `brew install zsh neovim git curl lazygit`
-- `brew install --cask wezterm font-meslo-for-powerlevel10k`
+- `brew install --cask ghostty font-meslo-for-powerlevel10k`
 
 Then the same Oh My Zsh setup, symlinks, and backups as Fedora.
 The script exits with a hint if run on the wrong OS — no flags needed.
@@ -181,26 +182,29 @@ The script exits with a hint if run on the wrong OS — no flags needed.
 8. **First `nvim` launch** — LazyVim downloads plugins automatically (~1–2 min,
    needs network). Run `:Mason` later to install LSP servers per language
 9. Prompt shows boxes/tofu? The terminal font is not the Nerd Font — see per-OS steps below
+10. **Ghostty config** is symlinked to `~/.config/ghostty/config`, which Ghostty
+    reads on both Fedora and macOS. Reload a running window with `ctrl+shift+,`
+    (Linux) or `cmd+shift+,` (macOS). On macOS, Ghostty *also* reads
+    `~/Library/Application Support/com.mitchellh.ghostty/config` and that native
+    file is loaded last, so it wins — move it aside if the Mac ignores the
+    dotfiles settings. Transparency needs a compositor; `background-blur` is
+    honored on macOS and KWin, other Linux desktops just get 80% opacity
 
 #### Fedora
 
 ```bash
-fc-cache -fv    # refresh font cache if the script downloaded the font, then restart WezTerm
+fc-cache -fv    # refresh font cache if the script downloaded the font, then restart Ghostty
 ```
 
 Nothing else required — an existing Fedora setup keeps working as-is, and the
 Linux-only aliases (VS Code Ozone/X11, `xdg-open`) stay active.
-
-**WezTerm flatpak note:** the installer symlinks `~/.wezterm.lua`, which is the
-path the sandbox reads. If the config isn't picked up, check
-`flatpak info --show-permissions org.wezfurlong.wezterm` includes `--filesystem=home`.
 
 Optional: VS Code via `sudo dnf install code` (Microsoft repo) or
 `flatpak install com.visualstudio-code`.
 
 #### macOS
 
-- **Font:** handled automatically — `wezterm.lua` sets `MesloLGS NF` and the
+- **Font:** handled automatically — `ghostty/config` sets `MesloLGS NF` and the
   `font-meslo-for-powerlevel10k` cask installs exactly that family. If glyphs
   are still boxes, run `p10k diagnose` to confirm the font is found
 - **VS Code (optional):** `brew install --cask visual-studio-code`, then
@@ -219,8 +223,7 @@ ln -s ~/dotfiles/zsh/.p10k.zsh           ~/.p10k.zsh
 ln -s ~/dotfiles/bash/.bashrc            ~/.bashrc
 ln -s ~/dotfiles/bash/.bash_profile      ~/.bash_profile
 ln -s ~/dotfiles/nvim                    ~/.config/nvim
-ln -s ~/dotfiles/wezterm/wezterm.lua     ~/.wezterm.lua
-ln -s ~/dotfiles/wezterm/wezterm.lua     ~/.config/wezterm/wezterm.lua
+ln -s ~/dotfiles/ghostty/config          ~/.config/ghostty/config
 ln -s ~/dotfiles/opencode                ~/.config/opencode
 ln -s ~/dotfiles/claude/.claude/skills    ~/.claude/skills
 ln -s ~/dotfiles/claude/.claude/settings.json ~/.claude/settings.json
@@ -228,13 +231,13 @@ ln -s ~/dotfiles/antigravity/.gemini/antigravity-cli/skills ~/.gemini/antigravit
 ```
 
 You still need: Oh My Zsh + powerlevel10k + the two zsh plugins, Neovim 0.9+,
-WezTerm, and a Nerd Font.
+Ghostty, and a Nerd Font.
 
 ## Requirements
 
 Installed by the scripts:
 
 - Oh My Zsh, powerlevel10k, zsh-autosuggestions, zsh-syntax-highlighting
-- Neovim 0.9+, WezTerm, lazygit, MesloLGS NF Nerd Font
+- Neovim 0.9+, Ghostty, lazygit, MesloLGS NF Nerd Font
 
 Not installed (see Step 3): opencode CLI, Claude Code CLI, Antigravity CLI, Rust, SDKMAN, nvm/Node, VS Code, Docker

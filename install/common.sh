@@ -80,8 +80,7 @@ run_symlinks() {
   symlink "$DOTFILES/bash/.bashrc" "$HOME/.bashrc"
   symlink "$DOTFILES/bash/.bash_profile" "$HOME/.bash_profile"
   symlink "$DOTFILES/nvim" "$HOME/.config/nvim"
-  symlink "$DOTFILES/wezterm/wezterm.lua" "$HOME/.wezterm.lua"
-  symlink "$DOTFILES/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+  symlink "$DOTFILES/ghostty/config" "$HOME/.config/ghostty/config"
   symlink "$DOTFILES/opencode" "$HOME/.config/opencode"
   symlink "$DOTFILES/claude/.claude/skills" "$HOME/.claude/skills"
   symlink "$DOTFILES/claude/.claude/settings.json" "$HOME/.claude/settings.json"
@@ -96,6 +95,6 @@ print_summary() {
   echo "  1. Restart the shell (new tab or: exec zsh)"
   echo "  2. Run 'p10k diagnose' — if glyphs are boxes, MesloLGS NF is missing"
   echo "  3. Run 'nvim' once — LazyVim downloads plugins on first launch"
-  echo "  4. Launch WezTerm — config comes from wezterm/wezterm.lua"
+  echo "  4. Launch Ghostty — config comes from ghostty/config"
   echo "  5. See README.md 'After Install' for what still needs manual setup"
 }
