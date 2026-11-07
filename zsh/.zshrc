@@ -121,12 +121,6 @@ export PATH="$HOME/.spicetify:$HOME/.local/bin:$HOME/.opencode/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$HOME/.npm-global/bin:$PATH"
 
-# Linux-only aliases (macOS has native 'open', no Ozone flags)
-if [[ "$(uname -s)" == "Linux" ]]; then
-  alias open='xdg-open'
-  alias code="code --ozone-platform=x11"
-fi
-
 # run docker mysql
 alias mysql-docker="docker exec -it mysql-docker mysql -u root -p -h 127.0.0.1"
 
