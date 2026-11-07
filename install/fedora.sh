@@ -49,4 +49,13 @@ fi
 
 install_omz
 run_symlinks
+
+if [[ "${XDG_CURRENT_DESKTOP:-}" == *KDE* ]]; then
+  if confirm "Apply the captured KDE Plasma theme (MacSonoma, WhiteSur, Kvantum)?"; then
+    bash "$DOTFILES/install/kde.sh"
+  fi
+else
+  echo "KDE not detected — skipping Plasma theme setup"
+fi
+
 print_summary

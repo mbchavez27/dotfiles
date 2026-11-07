@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "id": "macsonoma-dark",
+  "label": "MacSonoma-Dark",
+  "capturedAt": "2026-11-07T14:15:10Z",
+  "sourceHome": "/home/mbchavez",
+  "plasma": {
+    "lookAndFeel": "com.github.vinceliuice.MacSonoma-Dark",
+    "desktopTheme": "MacSonoma-Dark",
+    "colorScheme": "MacSonomaDark",
+    "splash": "com.github.vinceliuice.MacSonoma-Dark"
+  },
+  "decoration": {
+    "library": "org.kde.kwin.aurorae.v2",
+    "theme": "__aurorae__svg__MacSonoma-Dark",
+    "borderSize": "Tiny"
+  },
+  "qt": {
+    "widgetStyle": "kvantum-dark",
+    "kvantumTheme": "MacSonomaDark"
+  },
+  "icons": {
+    "theme": "WhiteSur-dark"
+  },
+  "cursor": {
+    "theme": "WhiteSur-cursors",
+    "size": 24
+  },
+  "sddm": {
+    "theme": "WhiteSur-dark",
+    "dir": "sddm/WhiteSur-dark"
+  },
+  "fonts": {
+    "ui": "SF Pro Rounded",
+    "fixed": "SF Pro Rounded",
+    "terminal": "MesloLGS NF"
+  },
+  "appearance": {
+    "accentColor": "233,61,88",
+    "xftHintStyle": "hintslight",
+    "xftSubPixel": "rgb",
+    "contrast": "4",
+    "frameContrast": "0.2",
+    "fonts": {
+      "font": "SF Pro Rounded,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1",
+      "fixed": "SF Pro Rounded,10,-1,5,600,0,0,0,0,0,0,0,0,0,0,1,Bold",
+      "menuFont": "SF Pro Rounded,10,-1,5,600,0,0,0,0,0,0,0,0,0,0,1,Bold",
+      "toolBarFont": "SF Pro Rounded,9,-1,5,600,0,0,0,0,0,0,0,0,0,0,1,Bold",
+      "smallestReadableFont": "SF Pro Rounded,8,-1,5,600,0,0,0,0,0,0,0,0,0,0,1,Bold",
+      "windowActiveFont": "SF Pro Rounded,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+    }
+  },
+  "extras": {
+    "kwinPlugins": {},
+    "cornerRadius": null
+  },
+  "sources": {
+    "theme": {
+      "repo": "https://github.com/vinceliuice/MacSonoma-kde.git",
+      "commit": "55ca5473e56cfc45579d1bd01054399872c0bb31"
+    },
+    "icons": {
+      "repo": "https://github.com/vinceliuice/WhiteSur-icon-theme.git",
+      "commit": "73d8040da51a9ed74e47c7366e7e9ff437601a5c",
+      "install": "./install.sh"
+    },
+    "cursor": {
+      "repo": "https://github.com/vinceliuice/WhiteSur-cursors.git",
+      "commit": "e190baf618ed95ee217d2fd45589bd309b37672b",
+      "install": "./install.sh"
+    },
+    "sddm": {
+      "repo": "https://github.com/vinceliuice/WhiteSur-kde.git",
+      "commit": "cf4df59ce91004f7ea39358b1b8ff917d5c329f7",
+      "subpath": "sddm/WhiteSur-6.2"
+    }
+  }
+}

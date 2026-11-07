@@ -76,6 +76,17 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
 - **antigravity/.gemini/** - Antigravity CLI configuration (skills-only symlink):
   - `antigravity-cli/skills/` → `~/.gemini/antigravity-cli/skills` - same seven skills; live `~/.gemini` state (conversations, cache, settings) is never overwritten
 
+### KDE Plasma theme (Fedora only)
+
+- **kde/** - captured Plasma appearance, restored by `install/kde.sh`:
+  - `themes/macsonoma-dark/` - MacSonoma-Dark global theme, Plasma style,
+    Aurorae decorations, colour scheme, Kvantum pack, SDDM theme
+  - `shared/` - GTK 3/4 sync, xsettingsd, panel layout, plasmoids, wallpapers
+  - `capture-kde.sh` - snapshots the live session back into `kde/`
+  - Icons (`WhiteSur-dark`) and cursors (`WhiteSur-cursors`) are cloned from
+    pinned upstream commits, not vendored
+  - See `docs/reinstall-kde-theme.md`; macOS never reads this directory
+
 ### Installer
 
 - **install/common.sh** - shared logic: symlinks, backups, Oh My Zsh setup
@@ -123,6 +134,16 @@ Prompts before installing:
 Then installs Oh My Zsh + powerlevel10k + zsh-autosuggestions + zsh-syntax-highlighting,
 and symlinks all configs. Existing files are moved to `~/.dotfiles-backup/<timestamp>/`
 — nothing is deleted. Skip prompts with `YES=1 ./install/fedora.sh`.
+
+On Fedora KDE, the installer also offers to apply the captured Plasma theme
+(`./install/kde.sh`). It is skipped automatically outside a KDE session. To run
+it separately:
+
+```bash
+./install/kde.sh --theme macsonoma-dark --panels --sddm
+```
+
+See `docs/reinstall-kde-theme.md` for the full restore and troubleshooting guide.
 
 #### macOS
 

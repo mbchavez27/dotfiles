@@ -1,0 +1,13 @@
+[Wallpaper]
+defaultWallpaperTheme=MacSonoma-Dark
+defaultFileSuffix=.jpg
+defaultWidth=3840
+defaultHeight=3840
+
+[ContrastEffect]
+enabled=true
+contrast=0.2
+saturation=10
+
+[AdaptiveTransparency]
+enabled=true
