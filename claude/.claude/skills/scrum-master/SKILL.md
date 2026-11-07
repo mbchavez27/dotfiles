@@ -1,5 +1,6 @@
 ---
 name: scrum-master
+disable-model-invocation: true
 description: >
   Acts as a scrum master to help write well-structured GitHub issue tickets following
   Scrum/Agile methodology. Triggers on: "write a ticket", "create an issue", "make a ticket",

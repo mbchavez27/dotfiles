@@ -1,5 +1,6 @@
 ---
 name: sprint-planner
+disable-model-invocation: true
 description: >
   Acts as a scrum master to help plan full sprints — goal setting, capacity planning,
   backlog ordering, dependency mapping, and retrospectives. Triggers on: "plan a sprint",

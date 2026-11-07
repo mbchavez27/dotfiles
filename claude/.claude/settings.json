@@ -3,5 +3,8 @@
   "attribution": {
     "commit": "",
     "pr": ""
+  },
+  "permissions": {
+    "defaultMode": "plan"
   }
 }
