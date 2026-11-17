@@ -62,6 +62,7 @@ fi
 install_omz
 run_symlinks
 setup_nvim_python
+setup_visidata
 
 if [[ "${XDG_CURRENT_DESKTOP:-}" == *KDE* ]]; then
   if confirm "Apply the captured KDE Plasma theme (MacSonoma, WhiteSur, Kvantum)?"; then

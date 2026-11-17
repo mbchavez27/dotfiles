@@ -91,6 +91,23 @@ setup_nvim_python() {
   fi
 }
 
+# VisiData (vd): terminal spreadsheet for CSV/TSV/JSON datasets.
+# Installed as a uv tool so it reuses uv's Python (brew would pull another Python, ~70 MB).
+setup_visidata() {
+  if command -v vd >/dev/null 2>&1; then
+    echo "visidata: already installed"
+    return 0
+  fi
+  if ! command -v uv >/dev/null 2>&1; then
+    echo "uv not found — skipping visidata (install uv, then re-run)"
+    return 0
+  fi
+  if confirm "Install VisiData CSV viewer via uv tool (~40 MB)?"; then
+    uv tool install -q visidata
+    echo "Installed: visidata (vd)"
+  fi
+}
+
 run_symlinks() {
   echo "Symlinking configs (existing files backed up):"
   symlink "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"

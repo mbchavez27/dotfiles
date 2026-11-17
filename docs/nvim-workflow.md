@@ -78,11 +78,37 @@ Plots and images render inline in Ghostty (via ImageMagick).
 
 ### Data, debugging, tests
 
-- **CSV/TSV datasets:** `:CsvViewToggle` aligns the columns.
+- **CSV/TSV in nvim:** columns line up automatically when the file opens.
+  `Tab`/`Shift+Tab` jump between fields, `Enter` goes to the next row, and the
+  header row stays visible. `:CsvViewToggle` shows the raw text.
+- **Explore a dataset (VisiData):** run `vd data.csv` in the shell, or press
+  `<space>sv` in nvim to open the current file in a floating window. It also
+  opens `.tsv`, `.json` and `.jsonl`; for xlsx/parquet see
+  [VisiData extras](#visidata-extras).
 - **Debug a training script:** `<space>db` on a line, then `<space>dc` (debugpy).
 - **Tests:** pytest through `<space>tt` / `<space>tr`.
 - **Long training runs:** run them in their own Ghostty tab
   (`uv run python train.py`), not inside nvim.
+
+### VisiData keys
+
+| Task | Keys |
+|---|---|
+| Move / search | `hjkl` / `/` |
+| Sort by column ascending / descending | `[` / `]` |
+| Select rows matching a regex | `\|` |
+| Frequency table of the column (label counts) | `Shift+f` |
+| Stats for every column (mean, nulls, distinct) | `Shift+i` |
+| New sheet from the selected rows | `"` |
+| Go back a sheet / quit everything | `q` / `gq` |
+| Save the current sheet | `Ctrl+s` |
+
+`Shift+f` on a label column is a quick class-balance check.
+
+<a id="visidata-extras"></a>
+VisiData extras (not installed): for xlsx, run
+`uv tool install --reinstall visidata --with openpyxl`. For parquet, add
+`--with pyarrow` (~100 MB est.).
 
 ### JupyterLab with Vim keys
 

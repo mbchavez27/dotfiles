@@ -1,6 +1,19 @@
 return {
   "hat0uma/csvview.nvim",
   ft = { "csv", "tsv" },
+  keys = {
+    {
+      "<leader>sv",
+      function()
+        if vim.fn.executable("vd") == 0 then
+          vim.notify("VisiData not found: uv tool install visidata", vim.log.levels.WARN)
+          return
+        end
+        Snacks.terminal({ "vd", vim.fn.expand("%:p") }, { win = { position = "float" } })
+      end,
+      desc = "VisiData (current file)",
+    },
+  },
   opts = {
     parser = { comments = { "#", "//" } },
     keymaps = {
@@ -23,4 +36,18 @@ return {
     },
   },
   cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle", "CsvViewInfo" },
+  config = function(_, opts)
+    require("csvview").setup(opts)
+    -- aligned columns by default; :CsvViewToggle shows the raw text
+    vim.api.nvim_create_autocmd("FileType", {
+      group = vim.api.nvim_create_augroup("csvview_auto", { clear = true }),
+      pattern = { "csv", "tsv" },
+      callback = function(ev)
+        require("csvview").enable(ev.buf)
+      end,
+    })
+    if vim.tbl_contains({ "csv", "tsv" }, vim.bo.filetype) then
+      require("csvview").enable(0)
+    end
+  end,
 }

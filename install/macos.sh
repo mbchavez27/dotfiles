@@ -54,4 +54,5 @@ fi
 install_omz
 run_symlinks
 setup_nvim_python
+setup_visidata
 print_summary

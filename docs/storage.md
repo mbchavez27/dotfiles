@@ -21,6 +21,7 @@ Sizes are measured on an Apple-silicon Mac unless marked "est.".
 | Molten remote-plugin manifest | `~/.local/share/nvim/rplugin.vim` | KBs | `:UpdateRemotePlugins` |
 | Discord presence server (cord.nvim) | `~/.local/share/nvim/cord/` | <1 MB | `:Cord update` |
 | WakaTime CLI + API key | `~/.wakatime/`, `~/.wakatime.cfg` | ~20 MB est. | vim-wakatime on first launch |
+| VisiData (`vd`) | `~/.local/share/uv/tools/visidata/`, `~/.local/bin/vd`, `~/.visidata/`, `~/.visidatarc` | 41 MB | `setup_visidata` (`uv tool install`) |
 | uv cache (`uvx jupyterlab`, project installs) | `~/.cache/uv/` | varies; `uv cache clean` | uv |
 | nvim state (undo, shada, sessions, logs) | `~/.local/state/nvim/` | <1 MB | nvim |
 | nvim cache | `~/.cache/nvim/` | ~5 MB | nvim |

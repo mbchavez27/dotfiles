@@ -85,6 +85,19 @@ fi
 section "WakaTime (vim-wakatime CLI and your API key)"
 remove_paths "wakatime" "$HOME/.wakatime" "$HOME/.wakatime.cfg"
 
+section "VisiData (uv tool, config, history)"
+if command -v uv >/dev/null 2>&1 && uv tool list 2>/dev/null | grep -q '^visidata '; then
+  echo "  visidata uv tool ($(size_of "$(uv tool dir)/visidata"))"
+  if confirm "  Uninstall visidata?"; then
+    run uv tool uninstall visidata
+  else
+    echo "  skipped: visidata"
+  fi
+else
+  echo "  visidata uv tool: not installed"
+fi
+remove_paths "visidata config and history" "$HOME/.visidatarc" "$HOME/.visidata"
+
 # --- Symlinks --------------------------------------------------------------
 section "Config symlinks (only links that point into $DOTFILES)"
 links=(
