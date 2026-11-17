@@ -69,8 +69,7 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
     (needs ImageMagick). Per research project, register a kernel once:
     `uv add --dev ipykernel && uv run python -m ipykernel install --user --name <proj>`
   - **CSV (`csvview.lua`):** aligned columns for `.csv`/`.tsv` datasets
-  - **Tracking (`tracking.lua`):** WakaTime (asks for your API key on first launch)
-    and Discord Rich Presence via cord.nvim
+  - **Tracking (`tracking.lua`):** Discord Rich Presence via cord.nvim
   - **Daily workflow (no VS Code):** see [`docs/nvim-workflow.md`](docs/nvim-workflow.md):
     keys for coding, AI agents, uv + Molten notebooks, debugging and tests, plus
     what replaces VS Code-only features (JupyterLab via `uvx`, ssh, no Live Share)

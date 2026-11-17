@@ -82,7 +82,7 @@ else
   echo "  none registered"
 fi
 
-section "WakaTime (vim-wakatime CLI and your API key)"
+section "WakaTime leftovers (no longer installed; removes old CLI and API key)"
 remove_paths "wakatime" "$HOME/.wakatime" "$HOME/.wakatime.cfg"
 
 section "VisiData (uv tool, config, history)"
