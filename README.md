@@ -71,8 +71,9 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
   - **CSV (`csvview.lua`):** aligned columns for `.csv`/`.tsv` datasets
   - **Tracking (`tracking.lua`):** WakaTime (asks for your API key on first launch)
     and Discord Rich Presence via cord.nvim
-  - **Still use VS Code for:** heavy `.ipynb` notebooks (rich tables/widgets),
-    Dev Containers / Codespaces, and Live Share — nvim has no good equivalent
+  - **Daily workflow (no VS Code):** see [`docs/nvim-workflow.md`](docs/nvim-workflow.md):
+    keys for coding, AI agents, uv + Molten notebooks, debugging and tests, plus
+    what replaces VS Code-only features (JupyterLab via `uvx`, ssh, no Live Share)
   - **UI (`ui.lua`):** gruvbox hard (transparent), MAHI dashboard, explorer on the right
   - The installer creates `~/.local/share/nvim/python` (pynvim, jupyter_client)
     as nvim's Python host, separate from project venvs
@@ -239,7 +240,7 @@ fc-cache -fv    # refresh font cache if the script downloaded the font, then res
 Nothing else required — an existing Fedora setup keeps working as-is, and the
 Linux-only aliases (VS Code Ozone/X11, `xdg-open`) stay active.
 
-Optional: VS Code via `sudo dnf install code` (Microsoft repo) or
+Optional (nvim is the main editor): VS Code via `sudo dnf install code` (Microsoft repo) or
 `flatpak install com.visualstudio-code`.
 
 #### macOS
@@ -247,7 +248,7 @@ Optional: VS Code via `sudo dnf install code` (Microsoft repo) or
 - **Font:** handled automatically — `ghostty/config` sets `MesloLGS NF` and the
   `font-meslo-for-powerlevel10k` cask installs exactly that family. If glyphs
   are still boxes, run `p10k diagnose` to confirm the font is found
-- **VS Code (optional):** `brew install --cask visual-studio-code`, then
+- **VS Code (optional, nvim is the main editor):** `brew install --cask visual-studio-code`, then
   `Cmd+Shift+P` → "Shell Command: Install 'code' in PATH"
   (the Ozone/X11 alias is Linux-only and stays off here)
 - **Docker (optional):** Docker Desktop (`brew install --cask docker`) if you
