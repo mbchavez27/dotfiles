@@ -20,7 +20,7 @@ Sizes are measured on an Apple-silicon Mac unless marked "est.".
 | nvim Python host (pynvim, jupyter_client, nbformat) | `~/.local/share/nvim/python/` | 17 MB | `setup_nvim_python` |
 | Molten remote-plugin manifest | `~/.local/share/nvim/rplugin.vim` | KBs | `:UpdateRemotePlugins` |
 | Discord presence server (cord.nvim) | `~/.local/share/nvim/cord/` | <1 MB | `:Cord update` |
-| VisiData (`vd`) | `~/.local/share/uv/tools/visidata/`, `~/.local/bin/vd`, `~/.visidata/`, `~/.visidatarc` | 41 MB (+127 MB with parquet via pyarrow) | `setup_visidata` (`uv tool install`) |
+| VisiData (`vd`) | `~/.local/share/uv/tools/visidata/`, `~/.local/bin/vd`, `~/.visidata/`, `~/.visidatarc` | 41 MB (+127 MB parquet/pyarrow, +1.4 MB xlsx/openpyxl) | `setup_visidata` (`uv tool install`) |
 | uv cache (`uvx jupyterlab`, project installs) | `~/.cache/uv/` | varies; `uv cache clean` | uv |
 | nvim state (undo, shada, sessions, logs) | `~/.local/state/nvim/` | <1 MB | nvim |
 | nvim cache | `~/.cache/nvim/` | ~5 MB | nvim |

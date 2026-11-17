@@ -106,24 +106,33 @@ setup_visidata() {
   else
     return 0
   fi
-  setup_visidata_parquet
+  setup_visidata_extras
 }
 
-# Parquet support: pyarrow inside vd's uv tool env (opt-in, ~130 MB).
-setup_visidata_parquet() {
-  local py
+# Optional readers inside vd's uv tool env: parquet (pyarrow, ~130 MB) and
+# xlsx (openpyxl, ~1.5 MB). One reinstall carries every extra that is already
+# present plus the newly chosen ones, since --reinstall drops unlisted --with deps.
+setup_visidata_extras() {
+  local py want=() added=() spec mod label
   py="$(uv tool dir)/visidata/bin/python"
   if [ ! -x "$py" ]; then
-    echo "visidata not installed via uv tool — skipping parquet support"
+    echo "visidata not installed via uv tool — skipping parquet/xlsx support"
     return 0
   fi
-  if "$py" -c "import pyarrow" >/dev/null 2>&1; then
-    echo "visidata parquet (pyarrow): already installed"
-    return 0
-  fi
-  if confirm "Add parquet support to VisiData (pyarrow, ~130 MB)?"; then
-    uv tool install -q --reinstall visidata --with pyarrow
-    echo "Installed: pyarrow for visidata (parquet)"
+  for spec in "pyarrow:parquet:~130 MB" "openpyxl:xlsx:~1.5 MB"; do
+    mod="${spec%%:*}"
+    label="${spec#*:}"
+    if "$py" -c "import $mod" >/dev/null 2>&1; then
+      echo "visidata ${label%%:*} ($mod): already installed"
+      want+=(--with "$mod")
+    elif confirm "Add ${label%%:*} support to VisiData ($mod, ${label#*:})?"; then
+      want+=(--with "$mod")
+      added+=("$mod")
+    fi
+  done
+  if [ ${#added[@]} -gt 0 ]; then
+    uv tool install -q --reinstall visidata "${want[@]}"
+    echo "Installed for visidata: ${added[*]}"
   fi
 }
 

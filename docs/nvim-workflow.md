@@ -83,8 +83,8 @@ Plots and images render inline in Ghostty (via ImageMagick).
   header row stays visible. `:CsvViewToggle` shows the raw text.
 - **Explore a dataset (VisiData):** run `vd data.csv` in the shell, or press
   `<space>sv` in nvim to open the current file in a floating window. It also
-  opens `.tsv`, `.json`, `.jsonl` and `.parquet` (parquet needs the opt-in
-  pyarrow add-on); for xlsx see [VisiData extras](#visidata-extras).
+  opens `.tsv`, `.json`, `.jsonl`, `.parquet` and `.xlsx` (the last two need
+  the opt-in [VisiData extras](#visidata-extras)).
 - **Debug a training script:** `<space>db` on a line, then `<space>dc` (debugpy).
 - **Tests:** pytest through `<space>tt` / `<space>tr`.
 - **Long training runs:** run them in their own Ghostty tab
@@ -106,10 +106,10 @@ Plots and images render inline in Ghostty (via ImageMagick).
 `Shift+f` on a label column is a quick class-balance check.
 
 <a id="visidata-extras"></a>
-VisiData extras: parquet support (pyarrow, ~130 MB) is an opt-in prompt in the
-installer (`setup_visidata`). For xlsx, run
-`uv tool install --reinstall visidata --with pyarrow --with openpyxl` (keep
-`--with pyarrow` if you use parquet, since `--reinstall` drops it otherwise).
+VisiData extras: the installer (`setup_visidata`) offers parquet (pyarrow,
+~130 MB) and xlsx (openpyxl, ~1.5 MB) as separate opt-in prompts. To add one by
+hand, list every extra you want, since `--reinstall` drops the rest:
+`uv tool install --reinstall visidata --with pyarrow --with openpyxl`.
 
 ### JupyterLab with Vim keys
 
