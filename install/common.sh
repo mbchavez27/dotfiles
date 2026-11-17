@@ -116,6 +116,7 @@ run_symlinks() {
   symlink "$DOTFILES/bash/.bash_profile" "$HOME/.bash_profile"
   symlink "$DOTFILES/nvim" "$HOME/.config/nvim"
   symlink "$DOTFILES/ghostty/config" "$HOME/.config/ghostty/config"
+  symlink "$DOTFILES/visidata/.visidatarc" "$HOME/.visidatarc"
   symlink "$DOTFILES/opencode" "$HOME/.config/opencode"
   symlink "$DOTFILES/claude/.claude/skills" "$HOME/.claude/skills"
   symlink "$DOTFILES/claude/.claude/settings.json" "$HOME/.claude/settings.json"

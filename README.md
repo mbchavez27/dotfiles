@@ -49,6 +49,11 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
   - Symlinked to `~/.config/ghostty/config` — Ghostty reads that XDG path on
     both Fedora and macOS
 
+- **visidata/.visidatarc** - VisiData (`vd`) gruvbox theme matching nvim:
+  - Uses the terminal's ANSI colors (set by Ghostty's Gruvbox Dark Hard), with
+    a transparent background
+  - Symlinked to `~/.visidatarc`; in vd, `Space` then `theme-default` resets it
+
 ### Editor
 
 - **nvim/** - Neovim on LazyVim (v8). Almost everything comes from LazyVim

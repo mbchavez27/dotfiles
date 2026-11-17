@@ -1,0 +1,44 @@
+# VisiData config, symlinked to ~/.visidatarc.
+#
+# Gruvbox dark theme to match nvim (gruvbox hard, transparent) and Ghostty.
+# 0-15 are the terminal's ANSI colors, which Ghostty's "Gruvbox Dark Hard"
+# sets to the exact gruvbox palette; 234/237/239/245/208 are the closest
+# 256-color matches for bg0_h/bg1/bg2/gray/orange. No background on the
+# default color, so Ghostty's transparency shows through like in nvim.
+from visidata import vd
+
+vd.themes["gruvbox_dark"] = dict(
+    color_default="15",
+    color_default_hdr="bold 11",
+    color_bottom_hdr="underline 8",
+    color_current_row="on 237",
+    color_current_col="bold",
+    color_current_hdr="bold 234 on 11",
+    color_column_sep="239",
+    color_key_col="14",
+    color_hidden_col="8",
+    color_selected_row="13",
+    color_edit_cell="15 on 239",
+    color_highlight_search="234 on 11",
+    color_note_row="11",
+    color_note_type="12",
+    color_note_pending="bold 13",
+    color_warning="11",
+    color_error="9",
+    color_status="15 on 237",
+    color_active_status="bold 234 on 7",
+    color_inactive_status="245 on 237",
+    color_menu="15 on 237",
+    color_menu_active="bold 234 on 11",
+    color_menu_help="245 on 237",
+    color_sidebar="15 on 237",
+    color_aggregator="bold 15 on 237",
+    color_graph_axis="bold 8",
+    color_working="bold 10",
+    color_add_pending="10",
+    color_change_pending="reverse 11",
+    color_delete_pending="9",
+    plot_colors="12 10 11 9 13 14 208",
+)
+
+vd.options.theme = "gruvbox_dark"
