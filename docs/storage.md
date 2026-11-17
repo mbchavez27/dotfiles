@@ -15,8 +15,8 @@ Sizes are measured on an Apple-silicon Mac unless marked "est.".
 | Backups of replaced configs | `~/.dotfiles-backup/<timestamp>/` | KBs | `backup_dest` |
 | Oh My Zsh + powerlevel10k + zsh-autosuggestions + zsh-syntax-highlighting | `~/.oh-my-zsh/` (themes and plugins under `custom/`) | ~95 MB | `install_omz` |
 | powerlevel10k cache | `~/.cache/p10k-*`, `~/.cache/gitstatus/` | ~10 MB est. | first zsh start |
-| nvim plugins (lazy.nvim) | `~/.local/share/nvim/lazy/` | ~150 MB, ~250 MB with the new extras (est.) | first `nvim` launch |
-| nvim LSP servers, formatters, debuggers (Mason) | `~/.local/share/nvim/mason/` | ~155 MB now, ~460 MB with the new extras incl. Java and Go (est.) | first `nvim` launch |
+| nvim plugins (lazy.nvim) | `~/.local/share/nvim/lazy/` | 160 MB (58 plugins) | first `nvim` launch |
+| nvim LSP servers, formatters, debuggers (Mason) | `~/.local/share/nvim/mason/` | 781 MB: TS/web 240, Markdown/SQL/YAML/TOML 140, Docker 122 (hadolint alone 113), Go 115, Java 65, Python 56 | first `nvim` launch |
 | nvim Python host (pynvim, jupyter_client, nbformat) | `~/.local/share/nvim/python/` | 17 MB | `setup_nvim_python` |
 | Molten remote-plugin manifest | `~/.local/share/nvim/rplugin.vim` | KBs | `:UpdateRemotePlugins` |
 | nvim state (undo, shada, sessions, logs) | `~/.local/state/nvim/` | <1 MB | nvim |
