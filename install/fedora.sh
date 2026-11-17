@@ -24,6 +24,18 @@ if confirm "Install packages via dnf (zsh neovim git curl)?"; then
       sudo dnf install -y lazygit
     fi
   fi
+
+  nvim_deps=()
+  command -v rg >/dev/null 2>&1 || nvim_deps+=(ripgrep)
+  command -v fd >/dev/null 2>&1 || nvim_deps+=(fd-find)
+  command -v uv >/dev/null 2>&1 || nvim_deps+=(uv)
+  if [ ${#nvim_deps[@]} -gt 0 ]; then
+    sudo dnf install -y "${nvim_deps[@]}"
+  fi
+  if ! command -v magick >/dev/null 2>&1 && \
+     confirm "Install ImageMagick for inline plots in nvim (~60 MB with deps)?"; then
+    sudo dnf install -y ImageMagick
+  fi
 fi
 
 if ! command -v ghostty >/dev/null 2>&1; then
@@ -49,6 +61,7 @@ fi
 
 install_omz
 run_symlinks
+setup_nvim_python
 
 if [[ "${XDG_CURRENT_DESKTOP:-}" == *KDE* ]]; then
   if confirm "Apply the captured KDE Plasma theme (MacSonoma, WhiteSur, Kvantum)?"; then

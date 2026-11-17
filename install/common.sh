@@ -73,6 +73,24 @@ install_omz() {
   done
 }
 
+# Dedicated Python host for nvim remote plugins (Molten). ~10 MB, isolated from project venvs.
+setup_nvim_python() {
+  local venv="$HOME/.local/share/nvim/python"
+  if [ -x "$venv/bin/python" ] && "$venv/bin/python" -c "import pynvim, jupyter_client" 2>/dev/null; then
+    echo "nvim python host: already set up"
+    return 0
+  fi
+  if ! command -v uv >/dev/null 2>&1; then
+    echo "uv not found — skipping nvim python host (install uv, then re-run)"
+    return 0
+  fi
+  if confirm "Create nvim Python host at $venv (pynvim, jupyter_client, nbformat — ~10 MB)?"; then
+    uv venv -q "$venv"
+    uv pip install -q --python "$venv/bin/python" pynvim jupyter_client nbformat
+    echo "Installed: nvim python host"
+  fi
+}
+
 run_symlinks() {
   echo "Symlinking configs (existing files backed up):"
   symlink "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
@@ -94,7 +112,7 @@ print_summary() {
   echo "Next steps:"
   echo "  1. Restart the shell (new tab or: exec zsh)"
   echo "  2. Run 'p10k diagnose' — if glyphs are boxes, MesloLGS NF is missing"
-  echo "  3. Run 'nvim' once — LazyVim downloads plugins on first launch"
+  echo "  3. Run 'nvim' once — LazyVim downloads plugins on first launch, then :checkhealth"
   echo "  4. Launch Ghostty — config comes from ghostty/config"
   echo "  5. See README.md 'After Install' for what still needs manual setup"
 }

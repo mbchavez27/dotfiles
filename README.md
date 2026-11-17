@@ -51,14 +51,26 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
 
 ### Editor
 
-- **nvim/** - Neovim configuration based on LazyVim (version 8) with:
-  - LSP support for language server functionality
-  - Treesitter for syntax highlighting
-  - LazyGit integration
-  - Snacks dashboard
-  - Discord RPC presence
-  - Theme configuration
-  - Dynamic NVM PATH integration
+- **nvim/** - Neovim on LazyVim (v8). Almost everything comes from LazyVim
+  extras (`nvim/lazyvim.json`, manage with `:LazyExtras`); `lua/plugins/` only
+  holds real overrides:
+  - **Languages:** Python (pyright + ruff, `<leader>cv` picks a uv `.venv`),
+    TypeScript/Next.js (vtsls, eslint, prettier, tailwind), Go, Java, Docker,
+    SQL, JSON/YAML/TOML, Markdown. (LaTeX lives on Overleaf web.) Tests via neotest (`<leader>t*`),
+    debugging via nvim-dap (`<leader>d*`)
+  - **AI (`ai.lua`, sidekick.nvim):** runs the Claude Code / opencode / agy CLIs
+    in a split — `<leader>aa` toggle, `<leader>ac` Claude, `<leader>ao` opencode,
+    `<leader>as` pick a CLI, `<leader>at` send this, `<leader>av` send selection,
+    `<leader>af` send file, `<leader>aD` send diagnostics, `<leader>ap` prompts.
+    Copilot next-edit suggestions are disabled (no subscription needed)
+  - **Notebooks (`jupyter.lua`):** Molten + jupytext + quarto; `.ipynb` opens as
+    `# %%` cells, `<leader>mi` starts a kernel, plots render inline in Ghostty
+    (needs ImageMagick). Per research project, register a kernel once:
+    `uv add --dev ipykernel && uv run python -m ipykernel install --user --name <proj>`
+  - **CSV (`csvview.lua`):** aligned columns for `.csv`/`.tsv` datasets
+  - **UI (`ui.lua`):** gruvbox hard (transparent), MAHI dashboard, explorer on the right
+  - The installer creates `~/.local/share/nvim/python` (pynvim, jupyter_client)
+    as nvim's Python host, separate from project venvs
 
 ### AI Assistant
 
@@ -92,6 +104,7 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
 - **install/common.sh** - shared logic: symlinks, backups, Oh My Zsh setup
 - **install/fedora.sh** - Fedora entry point (dnf)
 - **install/macos.sh** - macOS entry point (Homebrew)
+- **install/uninstall.sh** - removes everything the installers added (see `docs/storage.md`)
 
 ## Installation
 
@@ -154,7 +167,8 @@ See `docs/reinstall-kde-theme.md` for the full restore and troubleshooting guide
 Prompts before installing:
 
 - Homebrew (installed first if missing)
-- `brew install zsh neovim git curl lazygit`
+- `brew install zsh neovim git curl lazygit`, plus ripgrep/fd if missing and
+  ImageMagick (optional prompt, ~90 MB) for inline notebook plots
 - `brew install --cask ghostty font-meslo-for-powerlevel10k`
 
 Then the same Oh My Zsh setup, symlinks, and backups as Fedora.
@@ -234,6 +248,16 @@ Optional: VS Code via `sudo dnf install code` (Microsoft repo) or
 - **Docker (optional):** Docker Desktop (`brew install --cask docker`) if you
   want the `mysql-docker` alias
 
+## Disk usage and uninstalling
+
+Every path the installers create (per OS, with sizes) is listed in
+[`docs/storage.md`](docs/storage.md). To remove them:
+
+```bash
+DRY_RUN=1 ./install/uninstall.sh   # preview only
+./install/uninstall.sh             # asks before each group / package
+```
+
 ## Manual Symlink Table (fallback)
 
 If you prefer not to use the installer:
@@ -251,7 +275,7 @@ ln -s ~/dotfiles/claude/.claude/settings.json ~/.claude/settings.json
 ln -s ~/dotfiles/antigravity/.gemini/antigravity-cli/skills ~/.gemini/antigravity-cli/skills
 ```
 
-You still need: Oh My Zsh + powerlevel10k + the two zsh plugins, Neovim 0.9+,
+You still need: Oh My Zsh + powerlevel10k + the two zsh plugins, Neovim 0.11+,
 Ghostty, and a Nerd Font.
 
 ## Requirements
@@ -259,6 +283,7 @@ Ghostty, and a Nerd Font.
 Installed by the scripts:
 
 - Oh My Zsh, powerlevel10k, zsh-autosuggestions, zsh-syntax-highlighting
-- Neovim 0.9+, Ghostty, lazygit, MesloLGS NF Nerd Font
+- Neovim 0.11+, Ghostty, lazygit, MesloLGS NF Nerd Font
+- ripgrep, fd, ImageMagick (optional, ~90 MB on macOS), nvim Python host (~10 MB)
 
 Not installed (see Step 3): opencode CLI, Claude Code CLI, Antigravity CLI, Rust, SDKMAN, nvm/Node, VS Code, Docker

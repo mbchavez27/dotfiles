@@ -26,6 +26,18 @@ if confirm "Install packages via Homebrew (zsh neovim git curl lazygit, ghostty 
   fi
 
   brew install zsh neovim git curl lazygit
+
+  # nvim helpers — only what is missing. node comes from nvm, uv from its own installer.
+  nvim_deps=()
+  command -v rg >/dev/null 2>&1 || nvim_deps+=(ripgrep)
+  command -v fd >/dev/null 2>&1 || nvim_deps+=(fd)
+  if [ ${#nvim_deps[@]} -gt 0 ]; then
+    brew install "${nvim_deps[@]}"
+  fi
+  if ! command -v magick >/dev/null 2>&1 && \
+     confirm "Install ImageMagick for inline plots in nvim (~90 MB with deps)?"; then
+    brew install imagemagick
+  fi
   brew install --cask ghostty
   brew install --cask font-meslo-for-powerlevel10k || \
     echo "Warning: Nerd Font cask failed — prompt glyphs may render as boxes"
@@ -41,4 +53,5 @@ fi
 
 install_omz
 run_symlinks
+setup_nvim_python
 print_summary
