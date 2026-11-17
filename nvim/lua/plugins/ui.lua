@@ -39,8 +39,12 @@ return {
       picker = {
         sources = {
           explorer = {
+            hidden = true,
+            ignored = true,
             layout = { preset = "sidebar", preview = false, layout = { position = "right" } },
           },
+          files = { hidden = true, ignored = true },
+          grep = { hidden = true, ignored = true },
         },
       },
     },
