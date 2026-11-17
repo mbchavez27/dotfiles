@@ -84,6 +84,25 @@ Plots and images render inline in Ghostty (via ImageMagick).
 - **Long training runs:** run them in their own Ghostty tab
   (`uv run python train.py`), not inside nvim.
 
+### JupyterLab with Vim keys
+
+For notebooks that need widgets, rich tables or lots of plots, use JupyterLab
+in the browser with the `jupyterlab-vim` plugin. Nothing is installed permanently.
+
+```bash
+# from inside the project, so the notebook sees the project's packages
+uv run --with jupyterlab --with jupyterlab-vim jupyter lab
+
+# any folder, standalone kernel
+uvx --from jupyterlab --with jupyterlab-vim jupyter-lab
+```
+
+- **Size:** the first run downloads ~100 MB into uv's cache (est.); `uv cache clean` frees it.
+- **Inside a cell:** normal Vim editing (`Esc` → normal mode, `i` → insert).
+- **Between cells** (`Ctrl+[` or `Esc` twice to leave the cell): `j`/`k` move,
+  `Shift+Enter` runs and moves down, `dd` deletes a cell, `yy`/`p` copy/paste a cell.
+- Switch the plugin off with Settings → Vim → "Enable Vim".
+
 ## Writing
 
 - **Papers:** Overleaf in the browser.
@@ -93,7 +112,7 @@ Plots and images render inline in Ghostty (via ImageMagick).
 
 | Need | Do this |
 |---|---|
-| Heavy `.ipynb` (widgets, rich tables) | `uvx --from jupyterlab jupyter-lab`: no permanent install, ~100 MB in uv's cache (est.), freed with `uv cache clean` |
+| Heavy `.ipynb` (widgets, rich tables) | JupyterLab with Vim keys; see [above](#jupyterlab-with-vim-keys) |
 | Remote GPU server / lab machine | `ssh` in and run nvim there; on Fedora: clone the dotfiles + `./install/fedora.sh` |
 | Live Share pair programming | no nvim equivalent; share a terminal (e.g. `tmate`) or screen share |
 | Extension marketplace | `:LazyExtras` (languages, tools); `:Mason` (language servers) |
