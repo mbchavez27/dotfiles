@@ -45,6 +45,7 @@ return {
     "3rd/image.nvim",
     build = false,
     opts = {
+      backend = "kitty", -- Ghostty speaks the kitty graphics protocol
       processor = "magick_cli",
       integrations = {
         markdown = {

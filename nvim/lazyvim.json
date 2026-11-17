@@ -1,14 +1,23 @@
 {
   "extras": [
+    "ai.sidekick",
     "coding.blink",
     "dap.core",
     "formatting.prettier",
     "lang.docker",
+    "lang.git",
     "lang.go",
     "lang.java",
-    "lang.lua",
+    "lang.json",
+    "lang.markdown",
     "lang.python",
-    "lang.typescript"
+    "lang.sql",
+    "lang.tailwind",
+    "lang.toml",
+    "lang.typescript",
+    "lang.yaml",
+    "linting.eslint",
+    "test.core"
   ],
   "install_version": 8,
   "news": {
