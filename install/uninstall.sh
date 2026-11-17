@@ -82,6 +82,9 @@ else
   echo "  none registered"
 fi
 
+section "WakaTime (vim-wakatime CLI and your API key)"
+remove_paths "wakatime" "$HOME/.wakatime" "$HOME/.wakatime.cfg"
+
 # --- Symlinks --------------------------------------------------------------
 section "Config symlinks (only links that point into $DOTFILES)"
 links=(

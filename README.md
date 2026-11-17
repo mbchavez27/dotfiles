@@ -55,7 +55,8 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
   extras (`nvim/lazyvim.json`, manage with `:LazyExtras`); `lua/plugins/` only
   holds real overrides:
   - **Languages:** Python (pyright + ruff, `<leader>cv` picks a uv `.venv`),
-    TypeScript/Next.js (vtsls, eslint, prettier, tailwind), Go, Java, Docker,
+    TypeScript/Next.js (vtsls, eslint, prettier, tailwind), Svelte/SvelteKit,
+    C/C++ (system clangd) + CMake, Rust (run `rustup component add rust-analyzer`), Go, Java, Docker,
     SQL, JSON/YAML/TOML, Markdown. (LaTeX lives on Overleaf web.) Tests via neotest (`<leader>t*`),
     debugging via nvim-dap (`<leader>d*`)
   - **AI (`ai.lua`, sidekick.nvim):** runs the Claude Code / opencode / agy CLIs
@@ -68,6 +69,10 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
     (needs ImageMagick). Per research project, register a kernel once:
     `uv add --dev ipykernel && uv run python -m ipykernel install --user --name <proj>`
   - **CSV (`csvview.lua`):** aligned columns for `.csv`/`.tsv` datasets
+  - **Tracking (`tracking.lua`):** WakaTime (asks for your API key on first launch)
+    and Discord Rich Presence via cord.nvim
+  - **Still use VS Code for:** heavy `.ipynb` notebooks (rich tables/widgets),
+    Dev Containers / Codespaces, and Live Share — nvim has no good equivalent
   - **UI (`ui.lua`):** gruvbox hard (transparent), MAHI dashboard, explorer on the right
   - The installer creates `~/.local/share/nvim/python` (pynvim, jupyter_client)
     as nvim's Python host, separate from project venvs
