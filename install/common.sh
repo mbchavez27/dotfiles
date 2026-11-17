@@ -94,17 +94,36 @@ setup_nvim_python() {
 # VisiData (vd): terminal spreadsheet for CSV/TSV/JSON datasets.
 # Installed as a uv tool so it reuses uv's Python (brew would pull another Python, ~70 MB).
 setup_visidata() {
-  if command -v vd >/dev/null 2>&1; then
-    echo "visidata: already installed"
-    return 0
-  fi
   if ! command -v uv >/dev/null 2>&1; then
     echo "uv not found — skipping visidata (install uv, then re-run)"
     return 0
   fi
-  if confirm "Install VisiData CSV viewer via uv tool (~40 MB)?"; then
+  if command -v vd >/dev/null 2>&1; then
+    echo "visidata: already installed"
+  elif confirm "Install VisiData CSV viewer via uv tool (~40 MB)?"; then
     uv tool install -q visidata
     echo "Installed: visidata (vd)"
+  else
+    return 0
+  fi
+  setup_visidata_parquet
+}
+
+# Parquet support: pyarrow inside vd's uv tool env (opt-in, ~130 MB).
+setup_visidata_parquet() {
+  local py
+  py="$(uv tool dir)/visidata/bin/python"
+  if [ ! -x "$py" ]; then
+    echo "visidata not installed via uv tool — skipping parquet support"
+    return 0
+  fi
+  if "$py" -c "import pyarrow" >/dev/null 2>&1; then
+    echo "visidata parquet (pyarrow): already installed"
+    return 0
+  fi
+  if confirm "Add parquet support to VisiData (pyarrow, ~130 MB)?"; then
+    uv tool install -q --reinstall visidata --with pyarrow
+    echo "Installed: pyarrow for visidata (parquet)"
   fi
 }
 
