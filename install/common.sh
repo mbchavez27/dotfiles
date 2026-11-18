@@ -73,10 +73,10 @@ install_omz() {
   done
 }
 
-# Dedicated Python host for nvim remote plugins (Molten). ~10 MB, isolated from project venvs.
+# Dedicated Python host for nvim remote plugins (Molten) + jupytext CLI for .ipynb. ~15 MB, isolated from project venvs.
 setup_nvim_python() {
   local venv="$HOME/.local/share/nvim/python"
-  if [ -x "$venv/bin/python" ] && "$venv/bin/python" -c "import pynvim, jupyter_client" 2>/dev/null; then
+  if [ -x "$venv/bin/python" ] && "$venv/bin/python" -c "import pynvim, jupyter_client, jupytext" 2>/dev/null; then
     echo "nvim python host: already set up"
     return 0
   fi
@@ -84,9 +84,9 @@ setup_nvim_python() {
     echo "uv not found — skipping nvim python host (install uv, then re-run)"
     return 0
   fi
-  if confirm "Create nvim Python host at $venv (pynvim, jupyter_client, nbformat — ~10 MB)?"; then
-    uv venv -q "$venv"
-    uv pip install -q --python "$venv/bin/python" pynvim jupyter_client nbformat
+  if confirm "Create nvim Python host at $venv (pynvim, jupyter_client, nbformat, jupytext — ~15 MB)?"; then
+    [ -x "$venv/bin/python" ] || uv venv -q "$venv"
+    uv pip install -q --python "$venv/bin/python" pynvim jupyter_client nbformat jupytext
     echo "Installed: nvim python host"
   fi
 }

@@ -69,8 +69,10 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
     `<leader>as` pick a CLI, `<leader>at` send this, `<leader>av` send selection,
     `<leader>af` send file, `<leader>aD` send diagnostics, `<leader>ap` prompts.
     Copilot next-edit suggestions are disabled (no subscription needed)
-  - **Notebooks (`jupyter.lua`):** Molten + jupytext + quarto; `.ipynb` opens as
-    `# %%` cells, `<leader>mi` starts a kernel, plots render inline in Ghostty
+  - **Notebooks (`jupyter.lua`):** Molten + jupytext + quarto; `.ipynb` opens as a
+    rendered notebook (markdown cells rendered, code cells boxed), `<leader>mi`
+    starts a kernel and loads the notebook's saved outputs, `<leader>mc`/`ma`/`mA`
+    run cell / above / all, `:w` saves outputs back; plots render inline in Ghostty
     (needs ImageMagick). Per research project, register a kernel once:
     `uv add --dev ipykernel && uv run python -m ipykernel install --user --name <proj>`
   - **CSV (`csvview.lua`):** aligned columns for `.csv`/`.tsv` datasets
@@ -79,8 +81,8 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
     keys for coding, AI agents, uv + Molten notebooks, debugging and tests, plus
     what replaces VS Code-only features (JupyterLab via `uvx`, ssh, no Live Share)
   - **UI (`ui.lua`):** gruvbox hard (transparent), MAHI dashboard, explorer on the right
-  - The installer creates `~/.local/share/nvim/python` (pynvim, jupyter_client)
-    as nvim's Python host, separate from project venvs
+  - The installer creates `~/.local/share/nvim/python` (pynvim, jupyter_client,
+    jupytext) as nvim's Python host, separate from project venvs
 
 ### AI Assistant
 
@@ -294,6 +296,6 @@ Installed by the scripts:
 
 - Oh My Zsh, powerlevel10k, zsh-autosuggestions, zsh-syntax-highlighting
 - Neovim 0.11+, Ghostty, lazygit, MesloLGS NF Nerd Font
-- ripgrep, fd, ImageMagick (optional, ~90 MB on macOS), nvim Python host (~10 MB)
+- ripgrep, fd, ImageMagick (optional, ~90 MB on macOS), nvim Python host (~15 MB)
 
 Not installed (see Step 3): opencode CLI, Claude Code CLI, Antigravity CLI, Rust, SDKMAN, nvm/Node, VS Code, Docker

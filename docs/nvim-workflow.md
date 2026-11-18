@@ -64,15 +64,24 @@ use the project's packages.
 
 ### Notebook-style work (Molten)
 
-Write normal `.py` files split into `# %%` cells. `.ipynb` files open the
-same way (jupytext converts them) and are saved back as notebooks.
+Write normal `.py` files split into `# %%` cells. `.ipynb` files open as a
+rendered notebook: jupytext converts them to markdown with ```` ```python ````
+cells, markdown cells are rendered and code cells are boxed. Saving writes
+back to the `.ipynb`.
+
+The kernel never starts on its own (saves RAM). Press `<space>mi` to start it;
+the outputs and plots already saved in the notebook then show inline, and
+from then on `:w` stores new outputs in the `.ipynb` too.
 
 | Task | Keys |
 |---|---|
 | Start a kernel (pick `thesis-sentiment`) | `<space>mi` |
+| Run the cell under the cursor (`.ipynb`) | `<space>mc` |
+| Run this cell and all above / all cells | `<space>ma` / `<space>mA` |
 | Run selected lines | select, then `<space>mv` |
 | Re-run the current cell | `<space>mr` |
 | Show / hide output | `<space>mo` / `<space>mh` |
+| Toggle markdown rendering | `<space>um` |
 
 Plots and images render inline in Ghostty (via ImageMagick).
 

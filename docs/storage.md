@@ -17,7 +17,7 @@ Sizes are measured on an Apple-silicon Mac unless marked "est.".
 | powerlevel10k cache | `~/.cache/p10k-*`, `~/.cache/gitstatus/` | ~10 MB est. | first zsh start |
 | nvim plugins (lazy.nvim) | `~/.local/share/nvim/lazy/` | 174 MB | first `nvim` launch |
 | nvim LSP servers, formatters, debuggers (Mason) | `~/.local/share/nvim/mason/` | 882 MB: TS/web 240, Markdown/SQL/YAML/TOML 140, Docker 122 (hadolint alone 113), Go 115, Svelte 65, Java 65, Python 56, CMake 38 | first `nvim` launch |
-| nvim Python host (pynvim, jupyter_client, nbformat) | `~/.local/share/nvim/python/` | 17 MB | `setup_nvim_python` |
+| nvim Python host (pynvim, jupyter_client, nbformat, jupytext) | `~/.local/share/nvim/python/` | 20 MB | `setup_nvim_python` |
 | Molten remote-plugin manifest | `~/.local/share/nvim/rplugin.vim` | KBs | `:UpdateRemotePlugins` |
 | Discord presence server (cord.nvim) | `~/.local/share/nvim/cord/` | <1 MB | `:Cord update` |
 | VisiData (`vd`) | `~/.local/share/uv/tools/visidata/`, `~/.local/bin/vd`, `~/.visidata/`, `~/.visidatarc` | 41 MB (+127 MB parquet/pyarrow, +1.4 MB xlsx/openpyxl) | `setup_visidata` (`uv tool install`) |
