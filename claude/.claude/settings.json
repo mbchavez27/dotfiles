@@ -6,5 +6,8 @@
   "permissions": {
     "defaultMode": "auto"
   },
-  "theme": "auto"
+  "theme": "auto",
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true
+  }
 }
