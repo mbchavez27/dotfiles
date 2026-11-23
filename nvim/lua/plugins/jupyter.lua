@@ -93,18 +93,6 @@ return {
     },
   },
   {
-    -- Render notebook markdown cells and box code cells (LazyVim only enables markdown).
-    "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "quarto" },
-    opts = function(_, opts)
-      opts.file_types = opts.file_types or { "markdown", "norg", "rmd", "org", "codecompanion" }
-      if not vim.tbl_contains(opts.file_types, "quarto") then
-        table.insert(opts.file_types, "quarto")
-      end
-      opts.code = vim.tbl_deep_extend("force", opts.code or {}, { border = "thick" })
-    end,
-  },
-  {
     "3rd/image.nvim",
     build = false,
     opts = {
