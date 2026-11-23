@@ -136,6 +136,21 @@ setup_visidata_extras() {
   fi
 }
 
+# euporie: Jupyter notebooks in the terminal (cells, outputs, inline plots in Ghostty).
+# uv tool, like visidata. Kernels come from `ipykernel install --user` per project.
+setup_euporie() {
+  if ! command -v uv >/dev/null 2>&1; then
+    echo "uv not found — skipping euporie (install uv, then re-run)"
+    return 0
+  fi
+  if command -v euporie-notebook >/dev/null 2>&1; then
+    echo "euporie: already installed"
+  elif confirm "Install euporie terminal notebook viewer via uv tool (~50 MB)?"; then
+    uv tool install -q euporie
+    echo "Installed: euporie (euporie-notebook, euporie-console, euporie-preview)"
+  fi
+}
+
 run_symlinks() {
   echo "Symlinking configs (existing files backed up):"
   symlink "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"

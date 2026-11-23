@@ -55,4 +55,5 @@ install_omz
 run_symlinks
 setup_nvim_python
 setup_visidata
+setup_euporie
 print_summary

@@ -69,8 +69,8 @@ AI assistant configured via `~/.config/opencode/AGENTS.md`.
     `<leader>as` pick a CLI, `<leader>at` send this, `<leader>av` send selection,
     `<leader>af` send file, `<leader>aD` send diagnostics, `<leader>ap` prompts.
     Copilot next-edit suggestions are disabled (no subscription needed)
-  - **Notebooks (`jupyter.lua`):** Molten + jupytext + quarto; `.ipynb` opens as a
-    rendered notebook (markdown cells rendered, code cells boxed), `<leader>mi`
+  - **Notebooks (`jupyter.lua`):** Molten + jupytext + quarto; `.ipynb` opens as
+    markdown with ```` ```python ```` cells (not rendered), `<leader>mi`
     starts a kernel and loads the notebook's saved outputs, `<leader>mc`/`ma`/`mA`
     run cell / above / all, `:w` saves outputs back; plots render inline in Ghostty
     (needs ImageMagick). Per research project, register a kernel once:
@@ -296,6 +296,7 @@ Installed by the scripts:
 
 - Oh My Zsh, powerlevel10k, zsh-autosuggestions, zsh-syntax-highlighting
 - Neovim 0.11+, Ghostty, lazygit, MesloLGS NF Nerd Font
+- euporie terminal notebooks (opt-in uv tool, ~50 MB)
 - ripgrep, fd, ImageMagick (optional, ~90 MB on macOS), nvim Python host (~15 MB)
 
 Not installed (see Step 3): opencode CLI, Claude Code CLI, Antigravity CLI, Rust, SDKMAN, nvm/Node, VS Code, Docker

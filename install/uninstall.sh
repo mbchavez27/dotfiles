@@ -98,6 +98,18 @@ else
 fi
 remove_paths "visidata config and history" "$HOME/.visidatarc" "$HOME/.visidata"
 
+section "euporie (uv tool, config)"
+if command -v uv >/dev/null 2>&1 && uv tool list 2>/dev/null | grep -q '^euporie '; then
+  echo "  euporie uv tool ($(size_of "$(uv tool dir)/euporie"))"
+  if confirm "  Uninstall euporie?"; then
+    run uv tool uninstall euporie
+  else
+    echo "  skipped: euporie"
+  fi
+else
+  echo "  euporie uv tool: not installed"
+fi
+
 # --- Symlinks --------------------------------------------------------------
 section "Config symlinks (only links that point into $DOTFILES)"
 links=(

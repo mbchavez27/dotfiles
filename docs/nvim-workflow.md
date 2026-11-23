@@ -64,10 +64,10 @@ use the project's packages.
 
 ### Notebook-style work (Molten)
 
-Write normal `.py` files split into `# %%` cells. `.ipynb` files open as a
-rendered notebook: jupytext converts them to markdown with ```` ```python ````
-cells, markdown cells are rendered and code cells are boxed. Saving writes
-back to the `.ipynb`.
+Write normal `.py` files split into `# %%` cells. `.ipynb` files open as plain
+text: jupytext converts them to markdown with ```` ```python ```` cells (no
+markdown rendering, so nothing is redrawn as you edit). Saving writes back to
+the `.ipynb`.
 
 The kernel never starts on its own (saves RAM). Press `<space>mi` to start it;
 the outputs and plots already saved in the notebook then show inline, and
@@ -81,7 +81,6 @@ from then on `:w` stores new outputs in the `.ipynb` too.
 | Run selected lines | select, then `<space>mv` |
 | Re-run the current cell | `<space>mr` |
 | Show / hide output | `<space>mo` / `<space>mh` |
-| Toggle markdown rendering | `<space>um` |
 
 Plots and images render inline in Ghostty (via ImageMagick).
 
@@ -119,6 +118,32 @@ VisiData extras: the installer (`setup_visidata`) offers parquet (pyarrow,
 ~130 MB) and xlsx (openpyxl, ~1.5 MB) as separate opt-in prompts. To add one by
 hand, list every extra you want, since `--reinstall` drops the rest:
 `uv tool install --reinstall visidata --with pyarrow --with openpyxl`.
+
+### Notebooks in the terminal (euporie)
+
+`euporie` (opt-in, ~50 MB, `setup_euporie`) is a full notebook UI in the
+shell: rendered markdown, cells, saved outputs and inline plots in Ghostty.
+It uses the same kernels as Molten (the `ipykernel install --user` step above).
+
+```bash
+euporie-notebook analysis.ipynb   # edit + run (Kernel menu to pick thesis-sentiment)
+euporie-preview analysis.ipynb    # print the rendered notebook and exit
+euporie-console                   # Jupyter console with rich output
+```
+
+| Task (euporie-notebook) | Keys |
+|---|---|
+| Run cell / run and move down | `Ctrl+Enter` / `Shift+Enter` |
+| Edit cell / leave cell | `Enter` / `Esc` |
+| Move between cells | `j` / `k` |
+| New cell below / above, delete cell | `b` / `a`, `dd` |
+| Markdown / code cell | `m` / `y` |
+| Edit the cell in nvim (`$EDITOR`) | `e` |
+| Run all cells | Run menu → Run all cells |
+| Save / quit | `Ctrl+s` / `Ctrl+q` |
+
+Add `--edit-mode vi` (or Settings → Editing mode → vi) for Vim keys inside cells,
+and `--kernel thesis-sentiment` to skip the kernel picker.
 
 ### JupyterLab with Vim keys
 
