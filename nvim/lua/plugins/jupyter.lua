@@ -51,6 +51,16 @@ return {
         end,
       })
     end,
+    config = function()
+      -- Molten is a remote plugin: its commands come from the rplugin manifest, not
+      -- from loading the plugin. An :UpdateRemotePlugins run while Molten wasn't on
+      -- the runtimepath (it's lazy-loaded) leaves it out, so self-heal here.
+      if vim.fn.exists(":MoltenInit") ~= 2 then
+        vim.cmd("silent UpdateRemotePlugins")
+        pcall(vim.cmd.source, vim.fn.stdpath("data") .. "/rplugin.vim")
+        vim.notify("Molten re-registered (:UpdateRemotePlugins)", vim.log.levels.INFO)
+      end
+    end,
     ft = notebook_fts,
     keys = {
       { "<leader>mi", ":MoltenInit ", desc = "Molten Init", ft = notebook_fts },
